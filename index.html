@@ -3,721 +3,955 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Exterior Design & Closing Manager — Interview Script</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Exterior Team Lead (Player-Coach) — Vetting Script</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F8F5F0;--surface:#FFFFFF;--surface2:#F2EEE8;--surface3:#EAE6DF;
-  --ink:#1A1714;--ink2:#4A4640;--ink3:#8A857C;
-  --gold:#9B6E20;--gold-bg:rgba(155,110,32,0.07);--gold-border:rgba(155,110,32,0.25);
-  --green:#1F7A4A;--green-bg:rgba(31,122,74,0.08);--green-border:rgba(31,122,74,0.2);
-  --red:#B03A2A;--red-bg:rgba(176,58,42,0.08);--red-border:rgba(176,58,42,0.2);
-  --amber:#9A6010;--amber-bg:rgba(154,96,16,0.08);--amber-border:rgba(154,96,16,0.2);
-  --purple:#5B3B9E;--purple-bg:rgba(91,59,158,0.07);--purple-border:rgba(91,59,158,0.2);
-  --blue:#2A5F95;--blue-bg:rgba(42,95,149,0.07);--blue-border:rgba(42,95,149,0.2);
-  --border:#DDD8D0;--radius:10px;
+  --bg:#F5F2ED;
+  --surface:#FFFFFF;
+  --s2:#EDEAE4;
+  --s3:#E4E0D8;
+  --ink:#1A1714;
+  --ink2:#3D3A36;
+  --ink3:#7A7470;
+  --gold:#8B5C18;
+  --gold2:#B8802A;
+  --gold-bg:rgba(139,92,24,.07);
+  --gold-bd:rgba(139,92,24,.22);
+  --grn:#165C33;
+  --grn-bg:rgba(22,92,51,.08);
+  --grn-bd:rgba(22,92,51,.22);
+  --red:#8B2323;
+  --red-bg:rgba(139,35,35,.07);
+  --red-bd:rgba(139,35,35,.2);
+  --amb:#7A5000;
+  --amb-bg:rgba(122,80,0,.08);
+  --amb-bd:rgba(122,80,0,.22);
+  --blue:#1A4A7A;
+  --blue-bg:rgba(26,74,122,.07);
+  --blue-bd:rgba(26,74,122,.2);
+  --bd:#DDD8CF;
+  --sidebar:#18150F;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;font-size:14px;line-height:1.6}
+html{font-size:15px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;line-height:1.6}
+
+/* ══ LAYOUT ══ */
 .app{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
 
-/* SIDEBAR */
-.sidebar{background:#1A1714;border-right:1px solid #2E2B26;padding:1.75rem 1.25rem;position:sticky;top:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column}
-.sidebar-logo{font-family:'Playfair Display',serif;font-size:16px;color:#C9A84C;margin-bottom:2px;line-height:1.3}
-.sidebar-role{font-size:10px;color:#6E6A62;text-transform:uppercase;letter-spacing:.1em;margin-bottom:1.75rem}
-.nav-group{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:#6E6A62;margin-bottom:5px;margin-top:1.25rem}
-.nav-item{display:flex;align-items:center;gap:8px;padding:6px 9px;border-radius:6px;cursor:pointer;font-size:12px;color:#B8B3A8;transition:all .15s;margin-bottom:1px;border:none;background:none;width:100%;text-align:left}
-.nav-item:hover{background:rgba(255,255,255,.08);color:#fff}
-.nav-item.active{background:rgba(155,110,32,0.25);color:#C9A84C;border:1px solid rgba(201,168,76,0.3)}
-.nav-dot{width:4px;height:4px;border-radius:50%;background:currentColor;flex-shrink:0;opacity:.5}
+/* ══ SIDEBAR ══ */
+.sidebar{background:var(--sidebar);border-right:1px solid #28231A;padding:1.5rem 1rem 1rem;position:sticky;top:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column}
+.sb-logo{font-size:13px;font-weight:700;color:#C49830;line-height:1.3;margin-bottom:1px}
+.sb-role{font-size:10px;color:#5A5248;text-transform:uppercase;letter-spacing:.1em;margin-bottom:1.25rem}
+
+/* ── score dashboard ── */
+.dash{background:#211D16;border:1px solid #2E2820;border-radius:10px;padding:12px 13px;margin-bottom:1.25rem}
+.dash-title{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#5A5248;margin-bottom:8px}
+.dash-score{font-size:26px;font-weight:700;color:#C49830;line-height:1}
+.dash-lbl{font-size:10px;color:#5A5248;margin-top:2px;margin-bottom:8px}
+.dash-bar{height:4px;background:#2E2820;border-radius:2px;overflow:hidden;margin-bottom:10px}
+.dash-fill{height:100%;border-radius:2px;background:var(--gold2);transition:width .4s}
+.dash-checks{display:flex;flex-direction:column;gap:4px}
+.dc-row{display:flex;align-items:center;gap:6px;font-size:10px;color:#7A7268}
+.dc-dot{width:6px;height:6px;border-radius:50%;background:#2E2820;flex-shrink:0;transition:background .2s}
+.dc-dot.pass{background:#22A05A}
+.dc-dot.flag{background:#D4900A}
+.dc-dot.fail{background:#C04040}
+.dc-must{font-size:8px;color:#C04040;margin-left:auto;font-weight:700;flex-shrink:0}
+
+.sb-nav-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#3E3830;padding:0 6px;margin-bottom:4px;margin-top:.75rem}
+.nav-item{display:flex;align-items:center;gap:7px;padding:6px 8px;border-radius:6px;cursor:pointer;font-size:12px;color:#8A8078;transition:all .15s;margin-bottom:1px;border:none;background:none;width:100%;text-align:left;font-family:'DM Sans',sans-serif;font-weight:400}
+.nav-item:hover{background:rgba(255,255,255,.06);color:#E8E3DC}
+.nav-item.active{background:rgba(196,152,48,.18);color:#C49830;font-weight:600}
+.nav-dot{width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0;opacity:.4}
 .nav-item.active .nav-dot{opacity:1}
-.nav-num{font-size:9px;opacity:.4;margin-left:auto}
-.sidebar-footer{margin-top:auto;padding-top:1.25rem;border-top:1px solid #2E2B26}
-.score-pill{background:rgba(255,255,255,.06);border:1px solid #2E2B26;border-radius:var(--radius);padding:12px 14px}
-.score-pill-label{color:#6E6A62;font-size:10px;margin-bottom:3px;text-transform:uppercase;letter-spacing:.07em}
-.score-pill-val{font-size:20px;font-family:'Playfair Display',serif;color:#F2EFE8}
-.score-track{height:3px;background:#2E2B26;border-radius:2px;margin-top:8px;overflow:hidden}
-.score-track-fill{height:100%;border-radius:2px;background:var(--gold);transition:width .4s}
+.nav-num{font-size:9px;margin-left:auto;color:#3E3830}
+.nav-item.active .nav-num{color:#C49830}
+.sb-foot{margin-top:auto;padding-top:1rem;border-top:1px solid #28231A}
+.save-pill{font-size:10px;color:#3E3830;text-align:center;padding:5px;transition:color .3s}
+.save-pill.saved{color:#22A05A}
 
-/* MAIN */
-.main{padding:2.5rem;max-width:860px}
+/* ══ MAIN ══ */
+.main{padding:2rem 2.5rem 3rem;max-width:820px}
 
-/* SETUP */
-.setup-card{background:linear-gradient(135deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--gold-border);border-radius:14px;padding:2rem;margin-bottom:1.5rem;display:none}
+/* ══ SETUP ══ */
+.setup-card{background:var(--surface);border:1px solid var(--gold-bd);border-radius:14px;padding:2rem;margin-bottom:1.5rem;display:none}
 .setup-card.visible{display:block}
-.setup-card h1{font-family:'Playfair Display',serif;font-size:26px;color:var(--gold);margin-bottom:4px}
-.setup-card>p{font-size:13px;color:var(--ink3);margin-bottom:1.5rem}
-.setup-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem}
-.setup-field label{display:block;font-size:10px;color:var(--ink3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
-.setup-field input{width:100%;background:#fff;border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-family:'Inter',sans-serif;font-size:13px;color:var(--ink);outline:none;transition:border-color .15s}
-.setup-field input:focus{border-color:var(--gold)}
-.setup-field input::placeholder{color:var(--ink3)}
-.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.stat-box{background:#fff;border:1px solid var(--border);border-radius:8px;padding:12px}
-.stat-box-val{font-size:17px;font-family:'Playfair Display',serif;color:var(--gold)}
-.stat-box-label{font-size:10px;color:var(--ink3);margin-top:2px}
+.page-title{font-size:22px;font-weight:700;color:var(--gold);margin-bottom:2px}
+.page-sub{font-size:13px;color:var(--ink3);margin-bottom:1.5rem}
+.setup-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.25rem}
+.field label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:5px}
+.field input{width:100%;background:var(--s2);border:1px solid var(--bd);border-radius:7px;padding:9px 12px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);outline:none;transition:border-color .15s}
+.field input:focus{border-color:var(--gold2);background:#fff}
+.field input::placeholder{color:#B0AAA2}
 
-/* SECTION CARD */
-.section-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;margin-bottom:1.5rem;overflow:hidden;display:none}
-.section-card.visible{display:block}
-.section-header{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;background:#F2EEE8}
-.section-num{width:26px;height:26px;border-radius:50%;background:var(--gold-bg);border:1px solid var(--gold-border);color:var(--gold);font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.section-title{font-family:'Playfair Display',serif;font-size:18px;color:var(--ink)}
-.section-goal{font-size:11px;color:var(--ink3);margin-left:auto;text-align:right;max-width:220px;line-height:1.4;font-style:italic}
-.section-body{padding:1.5rem}
+/* ══ SECTION CARD ══ */
+.sec-card{background:var(--surface);border:1px solid var(--bd);border-radius:14px;margin-bottom:1.5rem;overflow:hidden;display:none}
+.sec-card.visible{display:block}
+.sec-head{padding:1rem 1.5rem;background:var(--s2);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:10px}
+.sec-num{width:26px;height:26px;border-radius:50%;background:var(--gold-bg);border:1px solid var(--gold-bd);color:var(--gold2);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-title{font-size:16px;font-weight:700;color:var(--ink)}
+.sec-goal{font-size:11px;color:var(--ink3);margin-left:auto;text-align:right;max-width:200px;line-height:1.4;font-style:italic}
+.sec-body{padding:1.5rem}
 
-/* TOGGLE DETAILS */
-.toggle-detail{margin-bottom:10px}
-.toggle-detail summary{font-size:11px;font-weight:500;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;padding:7px 10px;border-radius:6px;border:1px solid var(--border);color:var(--ink3);user-select:none;background:var(--surface2)}
-.toggle-detail summary::-webkit-details-marker{display:none}
-.toggle-detail summary::before{content:'▸';font-size:9px;transition:transform .15s}
-.toggle-detail[open] summary::before{transform:rotate(90deg)}
-.toggle-detail.gold summary{background:var(--gold-bg);border-color:var(--gold-border);color:var(--gold)}
-.toggle-detail.gold summary::before{color:var(--gold)}
-.toggle-detail.purple summary{background:var(--purple-bg);border-color:var(--purple-border);color:var(--purple)}
-.toggle-detail.purple summary::before{color:var(--purple)}
-.toggle-detail.green summary{background:var(--green-bg);border-color:var(--green-border);color:var(--green)}
-.toggle-detail.green summary::before{color:var(--green)}
-.toggle-detail.blue summary{background:var(--blue-bg);border-color:var(--blue-border);color:var(--blue)}
-.toggle-detail.blue summary::before{color:var(--blue)}
-.toggle-detail .detail-body{padding:10px 12px;font-size:12px;color:var(--ink2);line-height:1.55;border:1px solid var(--border);border-top:none;border-radius:0 0 6px 6px;background:var(--surface2)}
-.toggle-detail.gold .detail-body{background:var(--gold-bg);border-color:var(--gold-border)}
-.toggle-detail.purple .detail-body{background:var(--purple-bg);border-color:var(--purple-border)}
-.toggle-detail.green .detail-body{background:var(--green-bg);border-color:var(--green-border)}
-.toggle-detail.blue .detail-body{background:var(--blue-bg);border-color:var(--blue-border)}
+/* ══ SCRIPT BLOCK ══ */
+.sblock{margin-bottom:1.75rem;padding-bottom:1.75rem;border-bottom:1px dashed var(--bd)}
+.sblock:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.blabel{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.btag{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;padding:3px 9px;border-radius:20px;line-height:1.4}
+.btag-open{background:var(--gold-bg);color:var(--gold);border:1px solid var(--gold-bd)}
+.btag-q{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-bd)}
+.btag-fu{background:var(--s3);color:var(--ink3);border:1px solid var(--bd)}
+.btag-ctx{background:var(--grn-bg);color:var(--grn);border:1px solid var(--grn-bd)}
+.btag-key{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}
 
-/* QUESTION BLOCK */
-.question-block{margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
-.question-block:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.question-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);font-weight:500;margin-bottom:8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.q-num{width:17px;height:17px;border-radius:3px;background:var(--gold-bg);border:1px solid var(--gold-border);color:var(--gold);font-size:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.question-text{font-family:'Playfair Display',serif;font-size:16px;color:var(--ink);line-height:1.6;margin-bottom:12px;font-style:italic;border-radius:6px;padding:6px 8px;margin-left:-8px;transition:background .15s;outline:none;cursor:text}.question-text:hover{background:rgba(155,110,32,0.05)}.question-text:focus{background:rgba(155,110,32,0.08);box-shadow:0 0 0 2px rgba(155,110,32,0.2)}.question-text::after{}.q-edit-hint{font-size:10px;color:var(--ink3);font-style:italic;margin-top:-8px;margin-bottom:10px;display:block}
-.cn{color:var(--gold);font-style:normal;font-weight:500}
-.rn{color:#2A5F95;font-style:normal;font-weight:500}
+/* ══ QUESTION LINE — bold, large, easy to read live ══ */
+.q-line{
+  font-size:16px;
+  font-weight:600;
+  color:var(--ink);
+  line-height:1.7;
+  border-radius:8px;
+  padding:14px 16px;
+  background:rgba(139,92,24,.05);
+  border:1.5px solid var(--gold-bd);
+  outline:none;
+  white-space:pre-wrap;
+  cursor:text;
+  min-height:50px;
+  transition:all .15s;
+}
+.q-line:hover{background:rgba(139,92,24,.09);border-color:var(--gold2)}
+.q-line:focus{background:rgba(139,92,24,.11);border-color:var(--gold2);box-shadow:0 0 0 3px rgba(139,92,24,.1)}
 
-/* TAGS */
-.tag{font-size:9px;padding:2px 7px;border-radius:20px;font-weight:500}
-.tag-must{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
-.tag-jolt{background:var(--surface2);color:var(--gold);border:1px solid var(--gold-border)}
-.tag-rp{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-border)}
-.tag-deal{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
+/* context / delivery blocks — same font, quieter weight */
+.ctx-line{
+  font-size:15px;
+  font-weight:400;
+  color:var(--ink2);
+  line-height:1.7;
+  border-radius:8px;
+  padding:13px 15px;
+  background:var(--s2);
+  border:1px solid var(--bd);
+  outline:none;
+  white-space:pre-wrap;
+  cursor:text;
+  min-height:46px;
+  transition:all .15s;
+}
+.ctx-line:hover{border-color:var(--gold-bd);background:var(--s3)}
+.ctx-line:focus{border-color:var(--gold2);box-shadow:0 0 0 3px rgba(139,92,24,.08)}
+.edit-hint{font-size:10px;color:var(--ink3);font-style:italic;margin-top:4px;margin-bottom:10px;padding-left:2px}
 
-/* LISTEN GRID */
-.listen-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
-.listen-col-title{font-size:9px;text-transform:uppercase;letter-spacing:.08em;font-weight:500;margin-bottom:5px}
-.listen-col.good .listen-col-title{color:var(--green)}
-.listen-col.bad .listen-col-title{color:var(--red)}
-.listen-item{font-size:11px;color:var(--ink2);padding:3px 8px 3px 18px;position:relative;line-height:1.4;margin-bottom:2px}
-.listen-item::before{content:'';position:absolute;left:6px;top:9px;width:4px;height:4px;border-radius:50%}
-.listen-col.good .listen-item::before{background:var(--green)}
-.listen-col.bad .listen-item::before{background:var(--red)}
+/* ══ PROMPT / COACHING ══ */
+.prompt{border-radius:8px;padding:10px 14px;margin:10px 0;font-size:13px;font-weight:400;line-height:1.65}
+.prompt strong,.prompt em{font-style:normal}
+.prompt strong{font-weight:700}
+.prompt em{font-style:italic}
+.ptitle{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px;display:block}
+.prompt.gold{background:var(--gold-bg);border:1px solid var(--gold-bd);color:#6A4410}
+.prompt.green{background:var(--grn-bg);border:1px solid var(--grn-bd);color:var(--grn)}
+.prompt.red{background:var(--red-bg);border:1px solid var(--red-bd);color:var(--red)}
+.prompt.amber{background:var(--amb-bg);border:1px solid var(--amb-bd);color:var(--amb)}
 
-/* EXIT SPEECH */
-.exit-speech{background:var(--red-bg);border:1px solid var(--red-border);border-radius:8px;overflow:hidden;margin-bottom:10px}
-.exit-speech-header{padding:8px 12px;font-size:10px;font-weight:500;color:var(--red);text-transform:uppercase;letter-spacing:.07em;cursor:pointer;display:flex;align-items:center;gap:6px;background:rgba(194,91,74,0.15)}
-.exit-speech-header::before{content:'▸';font-size:9px;transition:transform .15s}
-.exit-speech.open .exit-speech-header::before{transform:rotate(90deg)}
-.exit-speech-body{display:none;padding:12px 14px;font-size:13px;color:#8B2A1A;line-height:1.7;font-family:'Playfair Display',serif;font-style:italic}
-.exit-speech.open .exit-speech-body{display:block}
+/* ══ LISTEN GRID ══ */
+.lgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.lcol{border-radius:7px;padding:10px 12px}
+.lcol.good{background:var(--grn-bg);border:1px solid var(--grn-bd)}
+.lcol.bad{background:var(--red-bg);border:1px solid var(--red-bd)}
+.lcol-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.lcol.good .lcol-title{color:var(--grn)}
+.lcol.bad .lcol-title{color:var(--red)}
+.litem{font-size:12px;color:var(--ink2);padding:4px 6px 4px 28px;position:relative;line-height:1.45;margin-bottom:2px;border-radius:5px;cursor:pointer;user-select:none;transition:background .12s}
+.litem:hover{background:rgba(0,0,0,.04)}
+.litem::before{content:'';position:absolute;left:6px;top:50%;transform:translateY(-50%);width:14px;height:14px;border-radius:4px;border:1.5px solid;transition:all .12s;flex-shrink:0}
+.lcol.good .litem::before{border-color:var(--grn);background:transparent}
+.lcol.bad .litem::before{border-color:var(--red);background:transparent}
+.litem.checked{font-weight:600}
+.lcol.good .litem.checked::before{background:var(--grn);border-color:var(--grn)}
+.lcol.bad .litem.checked::before{background:var(--red);border-color:var(--red)}
+.litem.checked::after{content:'✓';position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:9px;font-weight:700;color:#fff;line-height:1}
+.lcol.bad .litem.checked::after{content:'✗'}
 
-/* FOLLOWUP */
-.followup-item{font-size:12px;color:var(--ink2);padding:3px 0 3px 16px;position:relative;line-height:1.4}
-.followup-item::before{content:'→';position:absolute;left:0;font-size:10px;color:var(--ink3)}
+/* ══ PAUSE ══ */
+.pause{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--amb);background:var(--amb-bg);border:1px solid var(--amb-bd);border-radius:5px;padding:5px 11px;margin:6px 0}
 
-/* NOTES */
-.notes-area{background:#fff;border-radius:7px;padding:9px 11px;border:1px solid var(--border)}
-.notes-area-label{font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink3);margin-bottom:3px}
-.notes-area textarea{width:100%;background:none;border:none;outline:none;font-family:'Inter',sans-serif;font-size:12px;color:var(--ink);resize:none;line-height:1.5;min-height:40px}
-.notes-area textarea::placeholder{color:var(--ink3)}
+/* ══ NOTES ══ */
+.notes{background:var(--s2);border:1px solid var(--bd);border-radius:7px;padding:10px 12px;margin-top:12px}
+.notes-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:4px}
+.notes textarea{width:100%;background:none;border:none;outline:none;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--ink);resize:none;line-height:1.5;min-height:34px}
+.notes textarea::placeholder{color:#B0AAA2}
 
-/* CHECK ROW */
-.check-row{display:flex;align-items:center;gap:10px;margin-top:9px}
-.check-toggle{display:flex;border-radius:5px;overflow:hidden;border:1px solid var(--border);flex-shrink:0}
-.check-toggle button{padding:4px 11px;font-size:11px;font-family:'Inter',sans-serif;cursor:pointer;border:none;background:none;color:var(--ink3);transition:all .15s}
-.check-toggle button.pass{background:var(--green-bg);color:var(--green);font-weight:500}
-.check-toggle button.fail{background:var(--red-bg);color:var(--red);font-weight:500}
-.check-toggle button.flag{background:var(--amber-bg);color:var(--amber);font-weight:500}
-.check-label{font-size:11px;color:var(--ink3)}
+/* ══ CHECK ROW ══ */
+.chrow{display:flex;align-items:center;gap:10px;margin-top:10px}
+.chtog{display:flex;border-radius:5px;overflow:hidden;border:1px solid var(--bd)}
+.chtog button{padding:5px 13px;font-size:12px;font-family:'DM Sans',sans-serif;font-weight:600;cursor:pointer;border:none;background:none;color:var(--ink3);transition:all .15s}
+.chtog button.pass{background:var(--grn-bg);color:var(--grn)}
+.chtog button.flag{background:var(--amb-bg);color:var(--amb)}
+.chtog button.fail{background:var(--red-bg);color:var(--red)}
+.chlbl{font-size:12px;color:var(--ink3)}
 
-/* COMP GRID */
-.comp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:1.25rem}
-.comp-item{background:#fff;border:1px solid var(--border);border-radius:8px;padding:12px}
-.comp-item-label{font-size:10px;color:var(--ink3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.06em}
-.comp-item-val{font-size:16px;font-family:'Playfair Display',serif;color:var(--gold)}
-.comp-item-sub{font-size:10px;color:var(--ink3);margin-top:2px}
+/* ══ NAV BAR ══ */
+.navbar{display:flex;align-items:center;justify-content:space-between;margin-top:.75rem}
+.nbtn{padding:9px 20px;border-radius:7px;border:1px solid var(--bd);background:none;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;color:var(--ink2);cursor:pointer;transition:all .15s}
+.nbtn:hover{background:var(--s2)}
+.nbtn.primary{background:var(--gold);color:#fff;border-color:var(--gold)}
+.nbtn.primary:hover{background:var(--gold2);border-color:var(--gold2)}
 
-/* COMP GATE */
-.comp-gate{background:var(--red-bg);border:1px solid var(--red-border);border-radius:8px;padding:12px 14px;margin-bottom:1rem}
-.comp-gate-title{font-size:10px;font-weight:500;color:var(--red);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
-.comp-gate-row{font-size:12px;color:var(--ink2);padding:3px 0 3px 14px;position:relative}
-.comp-gate-row::before{content:'✕';position:absolute;left:0;font-size:9px;color:var(--red)}
+/* ══ SUMMARY ══ */
+.sum-card{background:var(--surface);border:1px solid var(--bd);border-radius:14px;padding:1.5rem;margin-bottom:1.5rem;display:none}
+.sum-card.visible{display:block}
+.sum-title{font-size:20px;font-weight:700;color:var(--gold);margin-bottom:3px}
+.sum-sub{font-size:13px;color:var(--ink3);margin-bottom:1.25rem}
+.sum-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd)}
+.sum-row:last-child{border-bottom:none}
+.spill{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px}
+.sp-pass{background:var(--grn-bg);color:var(--grn);border:1px solid var(--grn-bd)}
+.sp-flag{background:var(--amb-bg);color:var(--amb);border:1px solid var(--amb-bd)}
+.sp-fail{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}
+.sp-blank{background:var(--s2);color:var(--ink3);border:1px solid var(--bd)}
+.verdict{border-radius:8px;padding:.875rem 1.125rem;margin-top:1rem;font-size:14px;font-weight:600}
+.verd-yes{background:var(--grn-bg);color:var(--grn);border:1px solid var(--grn-bd)}
+.verd-maybe{background:var(--amb-bg);color:var(--amb);border:1px solid var(--amb-bd)}
+.verd-no{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}
+.copy-btn{width:100%;padding:11px;margin-top:1rem;border-radius:7px;border:1px solid var(--bd);background:var(--ink);color:#F5F2ED;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;cursor:pointer;transition:all .15s}
+.copy-btn:hover{background:var(--gold);border-color:var(--gold)}
+.info-block{background:var(--gold-bg);border:1px solid var(--gold-bd);border-radius:8px;padding:11px 14px;font-size:13px;color:#6A4410;line-height:1.6}
+.info-block strong{font-weight:700}
+.sum-note-group{margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px dashed var(--bd)}
+.sum-note-group:last-child{border-bottom:none}
+.sum-note-sec{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:4px}
+.sum-note-text{font-size:13px;color:var(--ink2);background:var(--s2);border-radius:6px;padding:8px 10px;line-height:1.55;white-space:pre-wrap}
+.sum-obs{margin-top:6px}
+.sum-obs-item{font-size:11px;padding:2px 0 2px 16px;position:relative;line-height:1.4}
+.sum-obs-item::before{content:'✓';position:absolute;left:0;font-size:9px;font-weight:700}
+.sum-obs-item.good::before{color:var(--grn)}
+.sum-obs-item.bad::before{content:'✗';color:var(--red)}
 
-/* ROLEPLAY */
-.rp-card{background:var(--blue-bg);border:1px solid var(--blue-border);border-radius:10px;margin-bottom:1.25rem;overflow:hidden}
-.rp-header{padding:10px 14px;border-bottom:1px solid var(--blue-border);display:flex;align-items:center;gap:8px}
-.rp-header-title{font-size:11px;font-weight:500;color:var(--blue);text-transform:uppercase;letter-spacing:.07em}
-.rp-body{padding:14px}
-.rp-homeowner-label{font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:4px}
-.rp-homeowner-line{font-family:'Playfair Display',serif;font-size:15px;color:var(--ink);font-style:italic;line-height:1.55;margin-bottom:10px;padding:10px 12px;background:var(--surface2);border-radius:7px;border-left:2px solid var(--blue)}
-.rp-homeowner-line[contenteditable="true"]{outline:none;cursor:text}
-.rp-homeowner-line[contenteditable="true"]:focus{border-left-color:var(--gold)}
-.rp-edit-hint{font-size:10px;color:var(--ink3);margin-bottom:10px;font-style:italic}
-
-/* CULTURE BANNER */
-.culture-banner{background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:10px;padding:12px 14px;margin-bottom:1.25rem}
-.culture-banner-title{font-size:11px;font-weight:500;color:var(--gold);margin-bottom:7px}
-.culture-trait{display:inline-block;background:var(--surface2);border:1px solid var(--border);border-radius:20px;font-size:11px;color:var(--ink2);padding:2px 9px;margin:2px 2px 0 0}
-
-/* NAV BAR */
-.nav-bar{display:flex;align-items:center;justify-content:space-between;margin-top:1rem;padding-top:1rem}
-.nav-btn{padding:9px 18px;border-radius:7px;border:1px solid var(--border);background:none;font-family:'Inter',sans-serif;font-size:13px;color:var(--ink2);cursor:pointer;transition:all .15s}
-.nav-btn:hover{background:var(--surface2)}
-.nav-btn.primary{background:var(--gold);color:#fff;border-color:var(--gold);font-weight:500}
-.nav-btn.primary:hover{background:#D4B060}
-
-/* SUMMARY */
-.summary-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.5rem;margin-bottom:1.5rem;display:none}
-.summary-card.visible{display:block}
-.summary-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
-.summary-row:last-child{border-bottom:none}
-.summary-row-label{color:var(--ink2);font-size:12px}
-.summary-status{font-size:10px;font-weight:500;padding:2px 9px;border-radius:20px}
-.s-pass{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
-.s-fail{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
-.s-flag{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border)}
-.s-blank{background:var(--surface2);color:var(--ink3);border:1px solid var(--border)}
-.verdict-banner{border-radius:8px;padding:.875rem 1.125rem;margin-top:1rem;font-size:13px;font-weight:500}
-.verdict-strong{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
-.verdict-maybe{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border)}
-.verdict-pass{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
-.copy-btn{width:100%;padding:11px;margin-top:1rem;border-radius:7px;border:1px solid var(--border);background:var(--ink);color:#F8F5F0;font-family:'Inter',sans-serif;font-size:13px;cursor:pointer;transition:all .15s}
-.copy-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
-
-b.hl{font-weight:600;color:var(--ink)}
-
-@media(max-width:720px){.app{grid-template-columns:1fr}.sidebar{position:static;height:auto}.main{padding:1.25rem}.listen-grid{grid-template-columns:1fr}.stats-row{grid-template-columns:1fr 1fr}.setup-grid{grid-template-columns:1fr}}
+@media(max-width:700px){
+  .app{grid-template-columns:1fr}
+  .sidebar{position:static;height:auto}
+  .dash-checks{display:none}
+  .main{padding:1.25rem}
+  .lgrid,.setup-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 <div class="app">
 
-<!-- SIDEBAR -->
+<!-- ══ SIDEBAR ══ -->
 <aside class="sidebar">
-  <div class="sidebar-logo">Proliance<br>Interview Guide</div>
-  <div class="sidebar-role">Exterior Design & Closing Manager</div>
-  <div class="nav-group">Sections</div>
-  <button class="nav-item active" onclick="goTo(0)"><span class="nav-dot"></span>Setup</button>
-  <button class="nav-item" onclick="goTo(1)"><span class="nav-dot"></span>Introduction<span class="nav-num">I</span></button>
-  <button class="nav-item" onclick="goTo(2)"><span class="nav-dot"></span>Production Track Record<span class="nav-num">II</span></button>
-  <button class="nav-item" onclick="goTo(3)"><span class="nav-dot"></span>Coaching & Development<span class="nav-num">III</span></button>
-  <button class="nav-item" onclick="goTo(4)"><span class="nav-dot"></span>Handling Underperformers<span class="nav-num">IV</span></button>
-  <button class="nav-item" onclick="goTo(5)"><span class="nav-dot"></span>Pressure & Accountability<span class="nav-num">V</span></button>
-  <button class="nav-item" onclick="goTo(6)"><span class="nav-dot"></span>Culture & Leadership Style<span class="nav-num">VI</span></button>
-  <button class="nav-item" onclick="goTo(7)"><span class="nav-dot"></span>Roleplay — Objections<span class="nav-num">VII</span></button>
-  <button class="nav-item" onclick="goTo(8)"><span class="nav-dot"></span>Closing & Comp<span class="nav-num">VIII</span></button>
-  <button class="nav-item" onclick="goTo(9)"><span class="nav-dot"></span>Summary</button>
-  <div class="sidebar-footer">
-    <div class="score-pill">
-      <div class="score-pill-label">Score</div>
-      <div class="score-pill-val" id="sidebar-score">0 / 16</div>
-      <div class="score-track"><div class="score-track-fill" id="sidebar-fill" style="width:0%"></div></div>
-    </div>
+  <div class="sb-logo">Proliance</div>
+  <div class="sb-role">Exterior Team Lead (Player-Coach)</div>
+
+  <div class="dash">
+    <div class="dash-title">Live Score Dashboard</div>
+    <div class="dash-score" id="d-score">0 / 10</div>
+    <div class="dash-lbl">criteria met</div>
+    <div class="dash-bar"><div class="dash-fill" id="d-fill" style="width:0%"></div></div>
+    <div class="dash-checks" id="d-checks"></div>
   </div>
+
+  <div class="sb-nav-lbl">Sections</div>
+  <button class="nav-item active" onclick="goTo(0)"><span class="nav-dot"></span>Setup</button>
+  <button class="nav-item" onclick="goTo(1)"><span class="nav-dot"></span>Opening Frame<span class="nav-num">I</span></button>
+  <button class="nav-item" onclick="goTo(2)"><span class="nav-dot"></span>Professional Identity<span class="nav-num">II</span></button>
+  <button class="nav-item" onclick="goTo(3)"><span class="nav-dot"></span>Career &amp; Transition<span class="nav-num">III</span></button>
+  <button class="nav-item" onclick="goTo(4)"><span class="nav-dot"></span>Company Overview<span class="nav-num">IV</span></button>
+  <button class="nav-item" onclick="goTo(5)"><span class="nav-dot"></span>Player-Coach Fit<span class="nav-num">V</span></button>
+  <button class="nav-item" onclick="goTo(6)"><span class="nav-dot"></span>Growth Motivation<span class="nav-num">VI</span></button>
+  <button class="nav-item" onclick="goTo(7)"><span class="nav-dot"></span>Performance &amp; Comp<span class="nav-num">VII</span></button>
+  <button class="nav-item" onclick="goTo(8)"><span class="nav-dot"></span>Systems Thinking<span class="nav-num">VIII</span></button>
+  <button class="nav-item" onclick="goTo(9)"><span class="nav-dot"></span>Future Thinking<span class="nav-num">IX</span></button>
+  <button class="nav-item" onclick="goTo(10)"><span class="nav-dot"></span>Culture &amp; Buy-In<span class="nav-num">X</span></button>
+  <button class="nav-item" onclick="goTo(11)"><span class="nav-dot"></span>Their Questions<span class="nav-num">XI</span></button>
+  <button class="nav-item" onclick="goTo(12)"><span class="nav-dot"></span>Closing Frame<span class="nav-num">XII</span></button>
+  <button class="nav-item" onclick="goTo(13)"><span class="nav-dot"></span>Summary</button>
+  <div class="sb-foot"><div class="save-pill" id="save-status">All changes saved</div></div>
 </aside>
 
+<!-- ══ MAIN ══ -->
 <main class="main">
 
 <!-- 0 SETUP -->
-<div class="setup-card visible" style="background:linear-gradient(135deg,#F2EEE8 0%,#EAE6DF 100%)" id="sec-0">
-  <h1>Exterior Design & Closing Manager</h1>
-  <p>Fill in below — candidate name populates throughout every question in the script.</p>
+<div class="setup-card visible" id="sec-0">
+  <div class="page-title">Exterior Team Lead (Player-Coach)</div>
+  <div class="page-sub">Initial Vetting Call — fill in below to populate the candidate name throughout the script.</div>
   <div class="setup-grid">
-    <div class="setup-field"><label>Candidate name</label><input type="text" id="input-candidate" placeholder="e.g. James" oninput="updateNames()"/></div>
-    <div class="setup-field"><label>Your name (recruiter)</label><input type="text" id="input-recruiter" placeholder="e.g. Ressa" oninput="updateNames()"/></div>
-    <div class="setup-field"><label>Interview date</label><input type="text" id="input-date" placeholder="e.g. April 25"/></div>
-    <div class="setup-field"><label>Referred by / source</label><input type="text" id="input-source" placeholder="e.g. Indeed, referral"/></div>
+    <div class="field"><label>Candidate name</label><input type="text" id="inp-cn" placeholder="e.g. James" oninput="updateNames()"/></div>
+    <div class="field"><label>Your name</label><input type="text" id="inp-rn" placeholder="e.g. Ressa" oninput="updateNames()"/></div>
+    <div class="field"><label>Interview date</label><input type="text" id="inp-dt" placeholder="e.g. May 8"/></div>
+    <div class="field"><label>Source / referred by</label><input type="text" id="inp-src" placeholder="e.g. Indeed, referral"/></div>
   </div>
-  <div class="stats-row">
-    <div class="stat-box"><div class="stat-box-val">$95–125K</div><div class="stat-box-label">Target year 1 earnings</div></div>
-    <div class="stat-box"><div class="stat-box-val">$3M+</div><div class="stat-box-label">Personal production target</div></div>
-    <div class="stat-box"><div class="stat-box-val">$12–15M+</div><div class="stat-box-label">Team production target</div></div>
-    <div class="stat-box"><div class="stat-box-val">83% / 95%</div><div class="stat-box-label">Closing % min / goal</div></div>
-  </div>
+  <div class="info-block"><strong>How to use:</strong> Questions appear bold with a gold border — easy to spot at a glance on a live call. All script lines are click-to-edit and auto-save to your browser. The sidebar score dashboard updates live as you mark criteria.</div>
 </div>
 
-<!-- I INTRODUCTION -->
-<div class="section-card" id="sec-1">
-  <div class="section-header"><div class="section-num">I</div><div class="section-title">Introduction & Icebreaker</div><div class="section-goal">Set the tone. Let them show you who they are before the real questions start.</div></div>
-  <div class="section-body">
-    <details class="toggle-detail gold" style="margin-bottom:1.25rem"><summary>Before you start</summary><div class="detail-body">This candidate is a sales professional. They are comfortable performing. They will be warm, confident, and good at first impressions — <b class="hl">that is their job.</b> Don't let a strong opening fool you. Use this section to set the expectation that this interview goes deeper than most.</div></details>
-    <div class="question-block">
-      <div class="question-label"><span class="q-num">1</span> Your intro & opening</div>
-      <div class="question-text" contenteditable="true" title="Click to edit">"Hey <span class="cn">___</span>, welcome — I'm <span class="rn">___</span>, I'm one of the recruiters here at Proliance. Before I get into the formal stuff, I want to give you a heads up: this is a different kind of interview. We're going to get pretty specific — I'll be asking for real numbers, real situations, real names. Not because we're trying to trip you up, but because this role demands that level and we want to make sure we're not wasting each other's time. Sound good?"</div>
-      <details class="toggle-detail green" style="margin-top:10px;margin-bottom:12px"><summary>Why open this way</summary><div class="detail-body">You are pre-framing the entire interview. <b class="hl">A strong candidate will lean in.</b> A weak candidate will get slightly nervous — and that tension will surface in their answers. You've also removed their ability to give vague answers later without looking like they ignored your framing.</div></details>
-      <div class="listen-grid">
-        <div class="listen-col good"><div class="listen-col-title">✓ Strong reaction</div><div class="listen-item">Smiles, says something like "I appreciate that" — confident</div><div class="listen-item">Leans forward — they're ready for it</div><div class="listen-item">Asks a clarifying question about the role — already engaged</div></div>
-        <div class="listen-col bad"><div class="listen-col-title">✗ Watch for</div><div class="listen-item">Nervous laugh or visible shift — they came prepared to perform, not to be real</div><div class="listen-item">Immediately starts pitching themselves before you've asked anything</div><div class="listen-item">Overconfident dismissal — "oh I've done plenty of these"</div></div>
-      </div>
-      <div class="question-block" style="border:none;margin-bottom:0;padding-bottom:0;margin-top:1rem">
-        <div class="question-label"><span class="q-num">2</span> First real question</div>
-        <div class="question-text" contenteditable="true" title="Click to edit">"So <span class="cn">___</span> — in one sentence, not a paragraph: what are you best at, professionally?"</div>
-        <details class="toggle-detail green" style="margin-top:10px;margin-bottom:12px"><summary>Why one sentence</summary><div class="detail-body">You're testing <b class="hl">self-awareness and precision.</b> A closer who can't distill their own value proposition into one sentence will struggle to do it for a homeowner. Watch whether they actually honor the constraint — or immediately expand into a paragraph anyway.</div></details>
-        <div class="listen-grid">
-          <div class="listen-col good"><div class="listen-col-title">✓ Strong</div><div class="listen-item">Crisp, specific — "I close difficult deals other people have already walked away from"</div><div class="listen-item">Answers in one sentence and stops — self-discipline</div><div class="listen-item">The sentence is about results, not personality traits</div></div>
-          <div class="listen-col bad"><div class="listen-col-title">✗ Watch for</div><div class="listen-item">Goes on for 3–4 sentences — can't edit themselves</div><div class="listen-item">Personality-based — "I'm a people person, I'm very driven..."</div><div class="listen-item">Generic — "I'm good at sales and building relationships"</div></div>
-        </div>
-        <div class="notes-area"><div class="notes-area-label">Notes</div><textarea placeholder="Their exact sentence. Did they honor the constraint?" oninput="autoResize(this)" data-key="intro-sentence"></textarea></div>
-        <div class="check-row"><div class="check-toggle"><button onclick="setCheck(this,'intro-sentence','pass')">Pass</button><button onclick="setCheck(this,'intro-sentence','flag')">Flag</button><button onclick="setCheck(this,'intro-sentence','fail')">No</button></div><span class="check-label">Self-aware, precise, result-oriented</span></div>
+<!-- I OPENING FRAME -->
+<div class="sec-card" id="sec-1">
+  <div class="sec-head"><div class="sec-num">I</div><div class="sec-title">Opening Frame</div><div class="sec-goal">Set the tone before the real questions begin.</div></div>
+  <div class="sec-body">
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-open">Opening</span></div>
+      <div class="prompt gold"><span class="ptitle">Before you start</span>Warm and direct. No small talk. Let them know upfront this is a real conversation — not a pitch session. You want them to relax and be honest, not perform.</div>
+      <div class="q-line editable" contenteditable="true" data-key="s1-open">"Hey [<span class="cn-ph">Name</span>], appreciate you taking the time to hop on today.
+
+I wanna give you quick context on how I usually structure these conversations.
+
+This isn't meant to be some super formal interview where we just run through your résumé. My goal is really to understand:
+
+— how you think
+— how you lead
+— what kind of environment you naturally perform best in
+— and what you're genuinely looking for at this stage of your career.
+
+At the same time, I'll give you transparent context around who we are, what we're building, and what the expectations are for this role.
+
+The goal is really just to see whether there's alignment on both sides. Does that sound fair?"</div>
+      <div class="edit-hint">✎ Click to edit — changes save automatically</div>
+      <div class="lgrid">
+        <div class="lcol good"><div class="lcol-title">✓ Strong reaction</div><div class="litem" data-li="li-001" onclick="toggleLi(this)">Relaxes — "absolutely" or "that's refreshing"</div><div class="litem" data-li="li-002" onclick="toggleLi(this)">Immediately engaged, not guarded</div></div>
+        <div class="lcol bad"><div class="lcol-title">✗ Watch for</div><div class="litem" data-li="li-003" onclick="toggleLi(this)">Starts pitching before you've asked anything</div><div class="litem" data-li="li-004" onclick="toggleLi(this)">Nervous, stiff — came prepared to perform, not to be real</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- II PRODUCTION TRACK RECORD -->
-<div class="section-card" id="sec-2">
-  <div class="section-header"><div class="section-num">II</div><div class="section-title">Production Track Record</div><div class="section-goal">Real numbers. No ranges. No approximations.</div></div>
-  <div class="section-body">
-    <details class="toggle-detail gold" style="margin-bottom:1.25rem"><summary>Context for you</summary><div class="detail-body">This is the section most candidates prepare for — and still fail. They'll give you ranges, impressive-sounding stories, and context about why their numbers weren't higher. <b class="hl">Push every time for the exact number.</b> "Around 85%" is not the same as 85%. If they can't give you specifics on their own performance, they will not be able to hold their team to specifics either.</div></details>
-    <div class="question-block">
-      <div class="question-label"><span class="q-num">1</span> Closing numbers <span class="tag-must">must-have</span> <span class="tag-deal">deal-breaker</span></div>
-      <div class="question-text" contenteditable="true" title="Click to edit">"<span class="cn">___</span>, what was your personal closing percentage in your last role — not a range, the actual number? And what was the average deal size?"</div>
-      <details class="toggle-detail purple" style="margin-top:10px;margin-bottom:12px"><summary>What you're actually testing</summary><div class="detail-body"><b class="hl">Specificity is the filter.</b> Someone who tracked their numbers knows them exactly. Someone who didn't track them — or is inflating — will give you a range or hedge. The follow-up is what breaks them: ask what their worst month looked like. Strong performers know their lows as well as their highs.</div></details>
-      <div class="listen-grid">
-        <div class="listen-col good"><div class="listen-col-title">✓ Strong</div><div class="listen-item">Gives an exact number — "87.3%" not "around 85–90"</div><div class="listen-item">Can also tell you their worst month without being asked</div><div class="listen-item">Knows average deal size immediately</div></div>
-        <div class="listen-col bad"><div class="listen-col-title">✗ Red flags</div><div class="listen-item">Gives a range — "somewhere between 80 and 90 percent"</div><div class="listen-item">Qualifies immediately — "well it depends on the market..."</div><div class="listen-item">Can't remember deal size — means they weren't tracking</div></div>
+<!-- II PROFESSIONAL IDENTITY -->
+<div class="sec-card" id="sec-2">
+  <div class="sec-head"><div class="sec-num">II</div><div class="sec-title">Professional Identity</div><div class="sec-goal">Self-awareness before experience. Precision over personality.</div></div>
+  <div class="sec-body">
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-q">Q1</span></div>
+      <div class="prompt gold"><span class="ptitle">What you're testing</span>Can they distill their value in one sentence? Watch whether they honor the constraint or ignore it. A closer who can't articulate their own value won't be able to do it for a homeowner.</div>
+      <div class="q-line editable" contenteditable="true" data-key="s2-q1">"Professionally speaking, if you had to summarize your strongest value in one sentence — what would you say you're best at?
+
+And when I say strongest value, I don't necessarily mean personality-wise. Some people might say building systems, developing people, or just being a really strong closer.
+
+What would YOU personally say is the thing you naturally bring to a team at a high level?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+      <div class="lgrid">
+        <div class="lcol good"><div class="lcol-title">✓ Strong</div><div class="litem" data-li="li-005" onclick="toggleLi(this)">One sentence — crisp, result-oriented</div><div class="litem" data-li="li-006" onclick="toggleLi(this)">Stops after one sentence — self-discipline</div></div>
+        <div class="lcol bad"><div class="lcol-title">✗ Watch for</div><div class="litem" data-li="li-007" onclick="toggleLi(this)">Generic — "I'm a people person, very driven"</div><div class="litem" data-li="li-008" onclick="toggleLi(this)">3–4 sentences — can't edit themselves</div></div>
       </div>
-      <details class="toggle-detail purple" style="margin-bottom:10px"><summary>If they give a range — follow-up</summary><div class="detail-body"><div class="followup-item">"I need the actual number, not a range — what does your CRM or tracker show?"</div><div class="followup-item">"What was your closing % in your worst quarter last year specifically?"</div></div></details>
-      <div class="exit-speech" id="exit-numbers"><div class="exit-speech-header" onclick="toggleExit('exit-numbers')">Exit speech — if they can't give real numbers</div><div class="exit-speech-body">"<span class="cn">___</span>, I want to be straight with you — for this role, we need someone who tracks their performance at a very specific level, because they'll be accountable to specific numbers every single week. The fact that you don't have those figures ready tells me we might not be aligned on what that level of accountability looks like. I don't want to waste your time moving forward if that's the case."</div></div>
-      <div class="notes-area"><div class="notes-area-label">Notes</div><textarea placeholder="Exact numbers they gave. Did they hedge?" oninput="autoResize(this)" data-key="prod-numbers"></textarea></div>
-      <div class="check-row"><div class="check-toggle"><button onclick="setCheck(this,'prod-numbers','pass')">Pass</button><button onclick="setCheck(this,'prod-numbers','flag')">Flag</button><button onclick="setCheck(this,'prod-numbers','fail')">No</button></div><span class="check-label">Gave exact numbers — no hedging</span></div>
+      <div class="notes"><div class="notes-lbl">Notes</div><textarea placeholder="Their exact sentence. Result-oriented or personality-based?" oninput="ar(this);sv()" data-key="n-q1a"></textarea></div>
+      <div class="chrow"><div class="chtog"><button onclick="sc(this,'c-q1','pass')">Pass</button><button onclick="sc(this,'c-q1','flag')">Flag</button><button onclick="sc(this,'c-q1','fail')">No</button></div><span class="chlbl">Self-aware and precise</span></div>
     </div>
-    <div class="question-block">
-      <div class="question-label"><span class="q-num">2</span> Hardest deal they ever closed <span class="tag-jolt">jolt</span></div>
-      <div class="question-text" contenteditable="true" title="Click to edit">"Tell me about the hardest deal you ever closed. Not your biggest — the hardest. What made it hard, and what specifically did you do that got it over the line?"</div>
-      <details class="toggle-detail purple" style="margin-top:10px;margin-bottom:12px"><summary>What you're actually testing</summary><div class="detail-body">Easy deals tell you nothing. <b class="hl">Hard deals reveal technique.</b> You're listening for whether they understand what was actually hard — the objection, the client psychology, the situation — and whether their solution was strategic or just lucky. Vague answers here mean they've never truly analyzed their own wins.</div></details>
-      <div class="listen-grid">
-        <div class="listen-col good"><div class="listen-col-title">✓ Strong</div><div class="listen-item">Names the specific obstacle — not just "it was a tough client"</div><div class="listen-item">Describes what they did differently — not just persistence</div><div class="listen-item">Can tell you what they learned from it</div></div>
-        <div class="listen-col bad"><div class="listen-col-title">✗ Red flags</div><div class="listen-item">"I just kept following up" — persistence without strategy</div><div class="listen-item">The hard part was logistics, not the actual close</div><div class="listen-item">Vague on what they actually said or did to turn it</div></div>
-      </div>
-      <details class="toggle-detail purple" style="margin-bottom:10px"><summary>If their answer is vague — follow-up</summary><div class="detail-body"><div class="followup-item">"What exactly did you say when they pushed back? Walk me through the actual conversation."</div><div class="followup-item">"At what point did you know you had them? What shifted?"</div></div></details>
-      <div class="notes-area"><div class="notes-area-label">Notes</div><textarea placeholder="What was the obstacle? What did they actually do?" oninput="autoResize(this)" data-key="prod-hardest"></textarea></div>
-      <div class="check-row"><div class="check-toggle"><button onclick="setCheck(this,'prod-hardest','pass')">Pass</button><button onclick="setCheck(this,'prod-hardest','flag')">Flag</button><button onclick="setCheck(this,'prod-hardest','fail')">No</button></div><span class="check-label">Strategic closer — not just persistent</span></div>
-    </div>
-    <div class="question-block">
-      <div class="question-label"><span class="q-num">3</span> A deal they lost <span class="tag-jolt">jolt</span></div>
-      <div class="question-text" contenteditable="true" title="Click to edit">"Now tell me about a deal you lost that you should have closed. What actually happened?"</div>
-      <details class="toggle-detail purple" style="margin-top:10px;margin-bottom:12px"><summary>What you're actually testing</summary><div class="detail-body">This is an accountability trap disguised as a question. <b class="hl">Watch whether they own the loss or explain it.</b> Strong closers know exactly what they did wrong. Weak closers blame the client, the market, the product. The word "but" after "I lost it because..." is a red flag every time.</div></details>
-      <div class="listen-grid">
-        <div class="listen-col good"><div class="listen-col-title">✓ Strong</div><div class="listen-item">Owns it immediately — names their specific mistake</div><div class="listen-item">Can tell you what they would do differently today</div><div class="listen-item">No external blame in the story</div></div>
-        <div class="listen-col bad"><div class="listen-col-title">✗ Red flags</div><div class="listen-item">The loss was primarily the client's fault — "they just weren't ready"</div><div class="listen-item">External factors dominate the story — market, price, competition</div><div class="listen-item">Can't think of one — means they've never honestly reviewed a loss</div></div>
-      </div>
-      <div class="notes-area"><div class="notes-area-label">Notes</div><textarea placeholder="Did they own it? What was their stated mistake?" oninput="autoResize(this)" data-key="prod-lost"></textarea></div>
-      <div class="check-row"><div class="check-toggle"><button onclick="setCheck(this,'prod-lost','pass')">Pass</button><button onclick="setCheck(this,'prod-lost','flag')">Flag</button><button onclick="setCheck(this,'prod-lost','fail')">No</button></div><span class="check-label">Owns losses — no blame language</span></div>
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-fu">Follow-up</span></div>
+      <div class="prompt green"><span class="ptitle">Why ask this</span>A real specific moment — with context — tells you it's genuinely their identity. Vague or hesitant means it's a practiced answer.</div>
+      <div class="q-line editable" contenteditable="true" data-key="s2-fu">"When did you realize that about yourself? Can you share a specific moment?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+      <div class="notes"><div class="notes-lbl">Notes</div><textarea placeholder="Did they have a real moment? Or vague and rehearsed?" oninput="ar(this);sv()" data-key="n-q1b"></textarea></div>
     </div>
   </div>
 </div>
 
-<!-- III COACHING -->
-<div class="section-card" id="sec-3">
-  <div class="section-header"><div class="section-num">III</div><div class="section-title">Coaching & Development</div><div class="section-goal">Can they teach what they do — or do they just do it?</div></div>
-  <div class="section-body">
-    <details class="toggle-detail gold" style="margin-bottom:1.25rem"><summary>Context for you</summary><div class="detail-body">The most common failure in player-coach roles: <b class="hl">elite individual performers who cannot articulate why they're good.</b> They close by instinct and can't break it down for someone else. Ask them to teach you something — not just tell you about it. That gap is where most candidates fall apart.</div></details>
-    <div class="question-block">
-      <div class="question-label"><span class="q-num">1</span> Coaching track record <span class="tag-must">must-have</span></div>
-      <div class="question-text" contenteditable="true" title="Click to edit">"<span class="cn">___</span>, tell me about someone you coached who genuinely improved because of you. Not a team win — one specific person. What was their closing % when you started working with them, what was it when you were done, and what did you actually do to get them there?"</div>
-      <details class="toggle-detail purple" style="margin-top:10px;margin-bottom:12px"><summary>What you're actually testing</summary><div class="detail-body">You want <b class="hl">a name, a before number, an after number, and a specific technique.</b> "I helped my team improve" is not an answer. If they can't give you one specific person with real data, they have not actually coached — they've managed. Those are not the same thing.</div></details>
-      <div class="listen-grid">
-        <div class="listen-col good"><div class="listen-col-title">✓ Strong</div><div class="listen-item">Names the person (first name is fine)</div><div class="listen-item">Gives before and after numbers</div><div class="listen-item">Describes the specific technique or change that made the difference</div></div>
-        <div class="listen-col bad"><div class="listen-col-title">✗ Red flags</div><div class="listen-item">Team-level answer — no individual named</div><div class="listen-item">No numbers — just "they really improved"</div><div class="listen-item">Their coaching was mostly motivation, not technique</div></div>
-      </div>
-      <details class="toggle-detail purple" style="margin-bottom:10px"><summary>If their answer is vague — follow-up</summary><div class="detail-body"><div class="followup-item">"What was their actual closing % before and after?"</div><div class="followup-item">"Walk me through a specific session — what did you say to them?"</div></div></details>
-      <div class="exit-speech" id="exit-coaching"><div class="exit-speech-header" onclick="toggleExit('exit-coaching')">Exit speech — if they can't name one person with real data</div><div class="exit-speech-body">"<span class="cn">___</span>, I appreciate the answer — but I need to be honest. This role is 25% coaching and that coaching has to produce measurable results on two teams. If you can't point to a specific person whose numbers moved because of something you specifically did, that's a gap I can't overlook for this position."</div></div>
-      <div class="notes-area"><div class="notes-area-label">Notes</div><textarea placeholder="Name, before %, after %, what they did specifically?" oninput="autoResize(this)" data-key="coach-track"></textarea></div>
-      <div class="check-row"><div class="check-toggle"><button onclick="setCheck(this,'coach-track','pass')">Pass</button><button onclick="setCheck(this,'coach-track','flag')">Flag</button><button onclick="setCheck(this,'coach-track','fail')">No</button></div><span class="check-label">Real coaching results — named, numbered</span></div>
+<!-- III CAREER & TRANSITION -->
+<div class="sec-card" id="sec-3">
+  <div class="sec-head"><div class="sec-num">III</div><div class="sec-title">Career &amp; Transition</div><div class="sec-goal">Let them surface the real reason. Don't lead them to it.</div></div>
+  <div class="sec-body">
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-q">Q2</span></div>
+      <div class="prompt gold"><span class="ptitle">How to hold this question</span>Ask it and stop. Let the silence work. Their first unprompted answer reveals the most — don't fill the pause.</div>
+      <div class="q-line editable" contenteditable="true" data-key="s3-q2">"Walk me through your current situation a little bit. What are you currently doing today, and what's making you open to exploring something different?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+      <div class="pause">⏸ Pause. Let them talk. Do not fill the silence.</div>
+      <div class="notes"><div class="notes-lbl">Notes — current situation</div><textarea placeholder="Current role, company, what they said first..." oninput="ar(this);sv()" data-key="n-q2a"></textarea></div>
     </div>
-    <div class="question-block">
-      <div class="question-label"><span class="q-num">2</span> Player-coach tension <span class="tag-jolt">jolt</span></div>
-      <div class="question-text" contenteditable="true" title="Click to edit">"Here's a real scenario, <span class="cn">___</span>: it's Wednesday. You have three personal appointments today and your highest-potential closer just called — they're in a deal right now and they're stuck, they need you live. What do you do?"</div>
-      <details class="toggle-detail purple" style="margin-top:10px;margin-bottom:12px"><summary>What you're actually testing</summary><div class="detail-body">This is the core tension of the player-coach role. <b class="hl">There is no perfect answer</b> — and that's the point. You're watching how they think through competing priorities in real time. Do they protect their own production? Do they drop everything for the team? Do they have a framework — or do they just wing it?</div></details>
-      <div class="listen-grid">
-        <div class="listen-col good"><div class="listen-col-title">✓ Strong</div><div class="listen-item">Thinks out loud — doesn't give an instant perfect answer</div><div class="listen-item">Has a system for triage — knows what to protect vs. what to sacrifice</div><div class="listen-item">Acknowledges the tension honestly — "this is the hard part of the role"</div></div>
-        <div class="listen-col bad"><div class="listen-col-title">✗ Red flags</div><div class="listen-item">Instant "I'd always prioritize the team" — no real thought, sounds rehearsed</div><div class="listen-item">Instant "I'd reschedule the team member" — shows they haven't thought about team development</div><div class="listen-item">Can't articulate a framework at all — will figure it out as they go</div></div>
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-fu">Follow-up A</span></div>
+      <div class="q-line editable" contenteditable="true" data-key="s3-fua">"What have you enjoyed most in your current or previous roles?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+      <div class="notes"><div class="notes-lbl">Notes</div><textarea placeholder="What lights them up? What do they protect?" oninput="ar(this);sv()" data-key="n-q2b"></textarea></div>
+    </div>
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-fu">Follow-up B</span><span class="btag btag-key" style="margin-left:4px">Key</span></div>
+      <div class="prompt red"><span class="ptitle">This is where the real driver shows up</span>Dissatisfaction. Ambition. Ego. Frustration. Ceilings. Leadership conflict. Listen for which one is driving this conversation — it tells you what they actually want, and what might not fit.</div>
+      <div class="q-line editable" contenteditable="true" data-key="s3-fub">"And what started feeling missing for you?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+      <div class="lgrid">
+        <div class="lcol good"><div class="lcol-title">✓ Moving toward</div><div class="litem" data-li="li-009" onclick="toggleLi(this)">Ambition-driven — "I want to build something bigger"</div><div class="litem" data-li="li-010" onclick="toggleLi(this)">Specific about what they want next</div></div>
+        <div class="lcol bad"><div class="lcol-title">✗ Running from</div><div class="litem" data-li="li-011" onclick="toggleLi(this)">All blame on employer, manager, or market</div><div class="litem" data-li="li-012" onclick="toggleLi(this)">No clear direction — just dissatisfied</div></div>
       </div>
-      <div class="notes-area"><div class="notes-area-label">Notes</div><textarea placeholder="How did they think through it? Did they acknowledge the tension?" oninput="autoResize(this)" data-key="coach-tension"></textarea></div>
-      <div class="check-row"><div class="check-toggle"><button onclick="setCheck(this,'coach-tension','pass')">Pass</button><button onclick="setCheck(this,'coach-tension','flag')">Flag</button><button onclick="setCheck(this,'coach-tension','fail')">No</button></div><span class="check-label">Has a framework for production vs. team tension</span></div>
+      <div class="notes"><div class="notes-lbl">Notes — real driver of the search</div><textarea placeholder="Ambition or escape? What was the actual thing missing?" oninput="ar(this);sv()" data-key="n-q2c"></textarea></div>
+      <div class="chrow"><div class="chtog"><button onclick="sc(this,'c-q2','pass')">Pass</button><button onclick="sc(this,'c-q2','flag')">Flag</button><button onclick="sc(this,'c-q2','fail')">No</button></div><span class="chlbl">Moving toward growth — not just running from something</span></div>
     </div>
   </div>
 </div>
 
-<!-- IV UNDERPERFORMERS -->
-<div class="section-card" id="sec-4">
-  <div class="section-header"><div class="section-num">IV</div><div class="section-title">Handling Underperformers</div><div class="section-goal">Do they have the stomach for it — or will they protect people too long?</div></div>
-  <div class="section-body">
-    <details class="toggle-detail gold" style="margin-bottom:1.25rem"><summary>Context for you</summary><div class="detail-body">This is where most player-coaches fail silently. They keep underperformers too long because removing them means carrying more personal production. <b class="hl">The candidate who sounds compassionate in their answer may be the one who lets the team rot for six months before doing anything.</b> Listen for whether they can hold the standard while still being human about it.</div></details>
-    <div class="question-block">
-      <div class="question-label"><span class="q-num">1</span> The hypothetical <span class="tag-must">must-have</span> <span class="tag-deal">deal-breaker</span></div>
-      <div class="question-text" contenteditable="true" title="Click to edit">"<span class="cn">___</span>, here's a situation I want your instinct on. One of your top closers — someone the team genuinely likes, been there 18 months, you've invested real time in them — has been at 71% closing for six straight weeks. They've got a family situation going on. What do you do, and when do you do it?"</div>
-      <details class="toggle-detail purple" style="margin-top:10px;margin-bottom:12px"><summary>Reading their answer — what to watch for</summary><div class="detail-body"><b class="hl">Watch how fast they answer AND what they say.</b> Instant answer = they've thought about this OR they're giving you the "right" answer without real feeling. Long pause = they're actually thinking it through — that's better. The word "but" is the tell: "I'd have the conversation but given the family situation..." — that "but" means they'd delay. <b class="hl">The standard doesn't move for circumstances. A strong candidate knows that and says it.</b></div></details>
-      <div class="listen-grid">
-        <div class="listen-col good"><div class="listen-col-title">✓ Strong instinct</div><div class="listen-item">Has the direct conversation immediately — week 1, not week 6</div><div class="listen-item">Separates the personal situation from the performance standard clearly</div><div class="listen-item">Has a defined timeline with a specific consequence — not open-ended</div><div class="listen-item">Shows care for the person without lowering the bar</div></div>
-        <div class="listen-col bad"><div class="listen-col-title">✗ Red flags</div><div class="listen-item">"Given the family situation, I'd give them more time" — the circumstance moved the standard</div><div class="listen-item">No defined timeline — "I'd work with them and see how it goes"</div><div class="listen-item">Talks about the relationship more than the performance</div><div class="listen-item">Can't say the word "remove" — they'll never do it in time</div></div>
-      </div>
-      <details class="toggle-detail purple" style="margin-bottom:10px"><summary>Push harder — follow-up questions</summary><div class="detail-body"><div class="followup-item">"At what exact week do you make the removal decision — if they haven't improved?"</div><div class="followup-item">"Have you ever actually removed someone you liked? What happened?"</div></div></details>
-      <div class="exit-speech" id="exit-underperformer"><div class="exit-speech-header" onclick="toggleExit('exit-underperformer')">Exit speech — if they can't hold the standard</div><div class="exit-speech-body">"<span class="cn">___</span>, I hear the compassion in that — and it says something good about you as a person. But I have to be honest: what I'm hearing is that the circumstance would move the standard. In this role, the standard doesn't move. If I can't trust that the bar gets held regardless of who the person is or what's going on in their life, this role isn't the right fit — for either of us."</div></div>
-      <div class="notes-area"><div class="notes-area-label">Notes</div><textarea placeholder="How fast did they answer? Did they name a timeline? Did they say 'remove'?" oninput="autoResize(this)" data-key="under-hypothetical"></textarea></div>
-      <div class="check-row"><div class="check-toggle"><button onclick="setCheck(this,'under-hypothetical','pass')">Pass</button><button onclick="setCheck(this,'under-hypothetical','flag')">Flag</button><button onclick="setCheck(this,'under-hypothetical','fail')">No</button></div><span class="check-label">Holds the standard — clear timeline, no excuses</span></div>
-    </div>
-    <div class="question-block">
-      <div class="question-label"><span class="q-num">2</span> Have they actually done it <span class="tag-jolt">jolt</span></div>
-      <div class="question-text" contenteditable="true" title="Click to edit">"Have you ever had to let someone go that you genuinely liked? Tell me what happened — not the policy, the actual conversation."</div>
-      <details class="toggle-detail purple" style="margin-top:10px;margin-bottom:12px"><summary>What you're actually testing</summary><div class="detail-body">Hypotheticals are easy. <b class="hl">You want evidence they've done the hard thing in real life.</b> The detail in their story — how the conversation opened, what the person said, how they felt afterward — tells you whether this is lived experience or theory.</div></details>
-      <div class="listen-grid">
-        <div class="listen-col good"><div class="listen-col-title">✓ Strong</div><div class="listen-item">Tells a specific story — real name (first name), real situation</div><div class="listen-item">Describes the actual conversation, not just the decision</div><div class="listen-item">Shows it was hard but necessary — not casual about it</div></div>
-        <div class="listen-col bad"><div class="listen-col-title">✗ Red flags</div><div class="listen-item">Can't think of one — has never done it or avoids it</div><div class="listen-item">Story is about HR making the decision — they didn't actually do it</div><div class="listen-item">Casual or performatively tough — "I don't have a problem with it"</div></div>
-      </div>
-      <div class="notes-area"><div class="notes-area-label">Notes</div><textarea placeholder="Real story? Who, what, how did the conversation go?" oninput="autoResize(this)" data-key="under-real"></textarea></div>
-      <div class="check-row"><div class="check-toggle"><button onclick="setCheck(this,'under-real','pass')">Pass</button><button onclick="setCheck(this,'under-real','flag')">Flag</button><button onclick="setCheck(this,'under-real','fail')">No</button></div><span class="check-label">Has done it — real story, real conversation</span></div>
+<!-- IV COMPANY OVERVIEW -->
+<div class="sec-card" id="sec-4">
+  <div class="sec-head"><div class="sec-num">IV</div><div class="sec-title">Company Overview</div><div class="sec-goal">Give them enough context to self-select in or out.</div></div>
+  <div class="sec-body">
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-ctx">Context Delivery</span></div>
+      <div class="prompt gold"><span class="ptitle">Watch their reaction here</span>A strong candidate engages — asks about the model, the insurance process, the team. A passive candidate just nods and waits for the next question. Engagement is a signal.</div>
+      <div class="ctx-line editable" contenteditable="true" data-key="s4-overview">"Well thank you. So just to give you a little bit of context on us before we go deeper into the role itself — Proliance is an exterior restoration company that focuses primarily on roofing, siding, gutters, and insurance restoration work.
+
+A big part of our model is helping homeowners navigate insurance claims while also helping them understand the value behind upgrading materials, improving systems, and protecting the value of their home long-term.
+
+So the Exterior Design role is very relationship-driven. There's a lot of authority, trust-building, product knowledge, communication, and helping clients make the right decisions for their home.
+
+So while there's definitely a sales component, it's not really just transactional or high-pressure selling."</div>
+      <div class="edit-hint">✎ Click to edit</div>
     </div>
   </div>
 </div>
 
-<!-- V PRESSURE & ACCOUNTABILITY -->
-<div class="section-card" id="sec-5">
-  <div class="section-header"><div class="section-num">V</div><div class="section-title">Pressure & Accountability</div><div class="section-goal">Do they own the number — or explain it?</div></div>
-  <div class="section-body">
-    <details class="toggle-detail gold" style="margin-bottom:1.25rem"><summary>Context for you</summary><div class="detail-body">Sales leaders are exceptionally good at contextualizing poor performance. Market conditions, insurance complexity, team turnover — there's always a reason. <b class="hl">You need someone who hears the number and says "I own that" — not "here's why it looks that way."</b> The framing of their answer tells you everything.</div></details>
-    <div class="question-block">
-      <div class="question-label"><span class="q-num">1</span> A period of underperformance <span class="tag-jolt">jolt</span></div>
-      <div class="question-text" contenteditable="true" title="Click to edit">"Tell me about a stretch — at least a month — where your numbers were below where they needed to be. What caused it, and what did you do?"</div>
-      <details class="toggle-detail purple" style="margin-top:10px;margin-bottom:12px"><summary>What you're actually testing</summary><div class="detail-body">Listen to the ratio of <b class="hl">external explanation vs. internal ownership.</b> Strong answer: "My pipeline management broke down, I wasn't qualifying leads properly, I fixed it by..." Weak answer: "The market was slow, we had some bad leads, eventually things picked back up." Both can be true — <b class="hl">which one they lead with is who they are.</b></div></details>
-      <div class="listen-grid">
-        <div class="listen-col good"><div class="listen-col-title">✓ Strong</div><div class="listen-item">Owns the slump without being asked to</div><div class="listen-item">Identifies what specifically broke down in their process</div><div class="listen-item">Describes a concrete change they made — not just trying harder</div></div>
-        <div class="listen-col bad"><div class="listen-col-title">✗ Red flags</div><div class="listen-item">External factors dominate — market, leads, management</div><div class="listen-item">Recovery was passive — "things picked back up"</div><div class="listen-item">Can't remember a stretch of underperformance — never had one, or won't admit it</div></div>
-      </div>
-      <div class="notes-area"><div class="notes-area-label">Notes</div><textarea placeholder="Ratio of ownership vs. external blame. What did they change?" oninput="autoResize(this)" data-key="press-slump"></textarea></div>
-      <div class="check-row"><div class="check-toggle"><button onclick="setCheck(this,'press-slump','pass')">Pass</button><button onclick="setCheck(this,'press-slump','flag')">Flag</button><button onclick="setCheck(this,'press-slump','fail')">No</button></div><span class="check-label">Owns the slump — identifies specific fix</span></div>
+<!-- V PLAYER-COACH FIT -->
+<div class="sec-card" id="sec-5">
+  <div class="sec-head"><div class="sec-num">V</div><div class="sec-title">Player-Coach Fit</div><div class="sec-goal">Do they actually want to still produce — or are they done with the field?</div></div>
+  <div class="sec-body">
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-q">Q3</span></div>
+      <div class="q-line editable" contenteditable="true" data-key="s5-q3">"In your most recent role, were you still actively producing personally while leading — or were you mainly operating from more of a management standpoint?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
     </div>
-    <div class="question-block">
-      <div class="question-label"><span class="q-num">2</span> Accountability to two numbers simultaneously <span class="tag-must">must-have</span></div>
-      <div class="question-text" contenteditable="true" title="Click to edit">"In this role you're accountable to two numbers at once — your personal closing % and your team's closing %. If your personal numbers are strong but your team is struggling, how do you feel about that — and what do you do?"</div>
-      <details class="toggle-detail purple" style="margin-top:10px;margin-bottom:12px"><summary>What you're actually testing</summary><div class="detail-body"><b class="hl">This question reveals whether they see leadership as part of their identity or a bonus responsibility.</b> A true player-coach feels genuine discomfort when the team struggles even if they personally are performing. Someone who's really just a closer with a title will feel fine about it.</div></details>
-      <div class="listen-grid">
-        <div class="listen-col good"><div class="listen-col-title">✓ Strong</div><div class="listen-item">Immediate discomfort — "that's not okay, that's on me"</div><div class="listen-item">Sees team performance as a reflection of their coaching quality</div><div class="listen-item">Has a specific response — pulls back on personal appointments to focus on team</div></div>
-        <div class="listen-col bad"><div class="listen-col-title">✗ Red flags</div><div class="listen-item">Comfortable with it — "well at least I'm carrying my weight"</div><div class="listen-item">Puts team performance on the individuals — "they need to want it"</div><div class="listen-item">No clear action — "I'd talk to them about it"</div></div>
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-fu">Follow-up A</span></div>
+      <div class="q-line editable" contenteditable="true" data-key="s5-fua">"What would you say the percentage split was between production versus leadership?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+    </div>
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-fu">Follow-up B</span><span class="btag btag-key" style="margin-left:4px">Key</span></div>
+      <div class="prompt red"><span class="ptitle">This question is HUGE</span>This is where you learn what they actually enjoy and what identity they want. Someone who secretly wants to step away from production will fail in this role within 60 days.</div>
+      <div class="q-line editable" contenteditable="true" data-key="s5-fub">"And how did you personally like that setup? Did you enjoy still being heavily involved in production while leading — or did you find yourself wanting to move more toward management?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+      <div class="lgrid">
+        <div class="lcol good"><div class="lcol-title">✓ Strong alignment</div><div class="litem" data-li="li-013" onclick="toggleLi(this)">Genuine energy — "I love still being in it"</div><div class="litem" data-li="li-014" onclick="toggleLi(this)">Can't imagine not producing personally</div></div>
+        <div class="lcol bad"><div class="lcol-title">✗ Misalignment signals</div><div class="litem" data-li="li-015" onclick="toggleLi(this)">Hesitates — "I mean, for now I could..."</div><div class="litem" data-li="li-016" onclick="toggleLi(this)">Sees production as a burden to eventually remove</div></div>
       </div>
-      <div class="notes-area"><div class="notes-area-label">Notes</div><textarea placeholder="Did they feel discomfort? Did they own team performance?" oninput="autoResize(this)" data-key="press-dual"></textarea></div>
-      <div class="check-row"><div class="check-toggle"><button onclick="setCheck(this,'press-dual','pass')">Pass</button><button onclick="setCheck(this,'press-dual','flag')">Flag</button><button onclick="setCheck(this,'press-dual','fail')">No</button></div><span class="check-label">Owns team performance as their own responsibility</span></div>
+      <div class="notes"><div class="notes-lbl">Notes — production identity or management identity?</div><textarea placeholder="Did they light up or pull back? What was their exact language?" oninput="ar(this);sv()" data-key="n-q3"></textarea></div>
+    </div>
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-ctx">Role Context</span></div>
+      <div class="ctx-line editable" contenteditable="true" data-key="s5-ctx">"The reason I ask is because this role is still heavily player-coach. The structure right now is roughly 75% production, 25% leadership and development.
+
+So the person stepping into this role is still expected to run appointments, close personally, lead from the front — while also helping elevate team standards and performance.
+
+It's definitely not a role where somebody fully steps away from production."</div>
+      <div class="edit-hint">✎ Click to edit</div>
+    </div>
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-q">Alignment check</span><span class="btag btag-key" style="margin-left:4px">Must-Have</span></div>
+      <div class="q-line editable" contenteditable="true" data-key="s5-align">"Is that something you genuinely see yourself enjoying long-term?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+      <div class="prompt amber"><span class="ptitle">If they hesitate — say this</span>"Got it — and honestly I appreciate the transparency. The biggest thing with this role is that the person stepping into it has to genuinely enjoy still being in production while leading. A lot of leadership roles eventually become more operational, but this one still requires somebody who wants to actively perform while coaching others."</div>
+      <div class="chrow"><div class="chtog"><button onclick="sc(this,'c-pc','pass')">Pass</button><button onclick="sc(this,'c-pc','flag')">Flag</button><button onclick="sc(this,'c-pc','fail')">No</button></div><span class="chlbl">Genuine player-coach identity — confirmed</span></div>
     </div>
   </div>
 </div>
 
-<!-- VI CULTURE & LEADERSHIP -->
-<div class="section-card" id="sec-6">
-  <div class="section-header"><div class="section-num">VI</div><div class="section-title">Culture & Leadership Style</div><div class="section-goal">Do they lead from the front — or manage from behind?</div></div>
-  <div class="section-body">
-    <div class="culture-banner"><div class="culture-banner-title">What Proliance culture actually looks like</div><span class="culture-trait">Lead from the front</span><span class="culture-trait">Non-negotiable standards</span><span class="culture-trait">Build leaders not followers</span><span class="culture-trait">Urgency & discipline</span><span class="culture-trait">High personal accountability</span><span class="culture-trait">Slow to hire, fast to remove</span></div>
-    <details class="toggle-detail gold" style="margin-bottom:1.25rem"><summary>Context for you</summary><div class="detail-body">The JD says "you do not manage from the sidelines." This isn't just a phrase — <b class="hl">it's a cultural filter.</b> Leaders who prefer strategy over execution, who delegate before they demonstrate, who build process before they build credibility — they don't survive here. You need someone who earns respect by outperforming.</div></details>
-    <div class="question-block">
-      <div class="question-label"><span class="q-num">1</span> Leadership philosophy <span class="tag-jolt">jolt</span></div>
-      <div class="question-text" contenteditable="true" title="Click to edit">"<span class="cn">___</span>, what's the worst leadership habit you've seen in a sales manager — the thing that makes a team worse, not better?"</div>
-      <details class="toggle-detail green" style="margin-top:10px;margin-bottom:12px"><summary>What you're listening for</summary><div class="detail-body"><b class="hl">What they can't stand in others reveals who they are.</b> If they resent managers who don't produce — they produce. If they hate managers who play favorites — they hold standards. If they complain about micromanagement — watch out, they may resist accountability themselves.</div></details>
-      <div class="listen-grid">
-        <div class="listen-col good"><div class="listen-col-title">✓ Culture match</div><div class="listen-item">Hates managers who don't lead by example — "how can you coach it if you don't do it"</div><div class="listen-item">Frustrated by managers who protect underperformers</div><div class="listen-item">Bothered by vague feedback — "good job, keep it up"</div></div>
-        <div class="listen-col bad"><div class="listen-col-title">✗ Culture mismatch</div><div class="listen-item">Hates managers who are "too numbers-focused" — they'll resist accountability</div><div class="listen-item">Complains about being held to strict standards — won't hold others to them</div><div class="listen-item">Vague answer — "just bad communication" with no specifics</div></div>
-      </div>
-      <div class="notes-area"><div class="notes-area-label">Notes</div><textarea placeholder="What did they say? What does it reveal about them?" oninput="autoResize(this)" data-key="cult-habit"></textarea></div>
-      <div class="check-row"><div class="check-toggle"><button onclick="setCheck(this,'cult-habit','pass')">Pass</button><button onclick="setCheck(this,'cult-habit','flag')">Flag</button><button onclick="setCheck(this,'cult-habit','fail')">No</button></div><span class="check-label">Leadership instincts align with our culture</span></div>
+<!-- VI GROWTH MOTIVATION -->
+<div class="sec-card" id="sec-6">
+  <div class="sec-head"><div class="sec-num">VI</div><div class="sec-title">Growth Motivation</div><div class="sec-goal">What are they building toward — and what's in their way?</div></div>
+  <div class="sec-body">
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-q">Q4</span></div>
+      <div class="q-line editable" contenteditable="true" data-key="s6-q4">"At this stage of your career, what are you genuinely trying to grow into?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+      <div class="notes"><div class="notes-lbl">Notes</div><textarea placeholder="Where do they see themselves? Is it specific or vague?" oninput="ar(this);sv()" data-key="n-q4a"></textarea></div>
     </div>
-    <div class="question-block">
-      <div class="question-label"><span class="q-num">2</span> Weekend availability <span class="tag-must">must-have</span></div>
-      <div class="question-text" contenteditable="true" title="Click to edit">"This role runs appointments on Saturdays and Sundays from 9 to 3 — homeowners aren't available during office hours during the week, so we go to them. That's non-negotiable. What does your weekend currently look like and what would you be giving up?"</div>
-      <details class="toggle-detail green" style="margin-top:10px;margin-bottom:12px"><summary>Why ask it this way</summary><div class="detail-body">Same principle as the Field Runner script — <b class="hl">"what would you be giving up" surfaces real conflicts</b> before they become reliability problems three months in. A confident candidate has already thought about this.</div></details>
-      <div class="listen-grid">
-        <div class="listen-col good"><div class="listen-col-title">✓ Strong</div><div class="listen-item">Says yes without conditions</div><div class="listen-item">Has worked weekend closing schedules before — not new to them</div></div>
-        <div class="listen-col bad"><div class="listen-col-title">✗ Disqualifier</div><div class="listen-item">"Most weekends should be fine" — that's a no</div><div class="listen-item">Has a recurring conflict — church commitments, second job, family obligation</div></div>
-      </div>
-      <div class="notes-area"><div class="notes-area-label">Notes</div><textarea placeholder="What would they be giving up? Any hesitation?" oninput="autoResize(this)" data-key="cult-weekend"></textarea></div>
-      <div class="check-row"><div class="check-toggle"><button onclick="setCheck(this,'cult-weekend','pass')">Pass</button><button onclick="setCheck(this,'cult-weekend','flag')">Flag</button><button onclick="setCheck(this,'cult-weekend','fail')">No</button></div><span class="check-label">Weekend availability confirmed — no conditions</span></div>
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-fu">Follow-up</span></div>
+      <div class="prompt gold"><span class="ptitle">What to listen for</span>External blame means they'll hit the same ceiling here. Internal diagnosis means they've actually thought about it. "My market was limited" vs. "I didn't have the right coaching infrastructure around me" — two very different candidates.</div>
+      <div class="q-line editable" contenteditable="true" data-key="s6-fu">"What do you feel is currently limiting that growth?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+      <div class="notes"><div class="notes-lbl">Notes — internal or external limiting factor?</div><textarea placeholder="External blame or internal diagnosis?" oninput="ar(this);sv()" data-key="n-q4b"></textarea></div>
+      <div class="chrow"><div class="chtog"><button onclick="sc(this,'c-growth','pass')">Pass</button><button onclick="sc(this,'c-growth','flag')">Flag</button><button onclick="sc(this,'c-growth','fail')">No</button></div><span class="chlbl">Clear growth direction — self-aware about the gap</span></div>
     </div>
   </div>
 </div>
 
-<!-- VII ROLEPLAY -->
-<div class="section-card" id="sec-7">
-  <div class="section-header"><div class="section-num">VII</div><div class="section-title">Roleplay — Objection Handling</div><div class="section-goal">You play the homeowner. Watch their instinct, calm, and technique.</div></div>
-  <div class="section-body">
-    <details class="toggle-detail gold" style="margin-bottom:1.25rem"><summary>How to run this section</summary><div class="detail-body"><b class="hl">You are the homeowner.</b> Read each line out loud, stay in character. After they respond, use the reading guide to assess. You can improvise — go off script, push back harder, see how they handle an unexpected response. The edit icon on each homeowner line means you can reword it live.</div></details>
+<!-- VII PERFORMANCE & COMP -->
+<div class="sec-card" id="sec-7">
+  <div class="sec-head"><div class="sec-num">VII</div><div class="sec-title">Performance &amp; Compensation</div><div class="sec-goal">What level have they actually performed at — and what drives them?</div></div>
+  <div class="sec-body">
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-ctx">Bridge</span></div>
+      <div class="prompt gold"><span class="ptitle">Why lead with this bridge</span>Naming the awkwardness disarms it. It also frames this as a performance conversation, not a negotiation — you're learning about them, not pitching a number.</div>
+      <div class="ctx-line editable" contenteditable="true" data-key="s7-bridge">"I know compensation conversations can sometimes feel a little awkward early on, but the reason I like asking this is because it helps me understand what kind of environments you've operated in, what level you've performed at, and whether the opportunity here realistically aligns with what you're looking for long-term.
 
-    <div class="rp-card">
-      <div class="rp-header"><span class="tag-rp">Setup</span><span class="rp-header-title" style="margin-left:4px">Context for the candidate before you begin</span></div>
-      <div class="rp-body">
-        <div class="question-text" contenteditable="true" title="Click to edit" style="margin-bottom:0" title="Click to edit this question">"<span class="cn">___</span>, I want to do a quick roleplay. I'm going to be a homeowner — you're closing me on a roofing upgrade. The insurance is covering the basic replacement. You're going to try to move me to a premium upgrade. I'm going to give you some real objections we hear in the field. Just respond the way you would live. Ready?"</div>
-      </div>
+So in your last full year of sales or leadership, what did that look like for you financially?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+      <div class="pause">⏸ Pause. Let them answer fully.</div>
+      <div class="notes"><div class="notes-lbl">Notes — what number did they give?</div><textarea placeholder="Exact number or range. How did they frame it?" oninput="ar(this);sv()" data-key="n-comp1"></textarea></div>
     </div>
-
-    <div class="question-block">
-      <div class="question-label"><span class="q-num">1</span> The insurance objection <span class="tag-rp">roleplay</span></div>
-      <p style="font-size:11px;color:var(--ink3);margin-bottom:6px;font-style:italic">Read this to them — you are the homeowner:</p>
-      <div class="rp-homeowner-line" contenteditable="true">"Look, the insurance is already paying for the roof. I just want what's covered — I don't want to pay anything out of pocket."</div>
-      <div class="rp-edit-hint">↑ You can click and edit this line to improvise</div>
-      <div class="listen-grid">
-        <div class="listen-col good"><div class="listen-col-title">✓ Strong response</div><div class="listen-item">Acknowledges the insurance coverage first — doesn't fight it</div><div class="listen-item">Reframes as a timing window: "you're already doing the replacement — this is the lowest cost moment to upgrade"</div><div class="listen-item">Makes it about the homeowner's long-term interest, not the sale</div><div class="listen-item">Simple, clear — doesn't over-explain product specs</div></div>
-        <div class="listen-col bad"><div class="listen-col-title">✗ Weak response</div><div class="listen-item">Immediately goes into product features — lost the emotional moment</div><div class="listen-item">Makes the homeowner feel upsold — "well if you just add a little more..."</div><div class="listen-item">Over-complicated explanation of insurance coverage</div><div class="listen-item">Pressure close — "you really should consider this"</div></div>
-      </div>
-      <details class="toggle-detail blue" style="margin-bottom:10px"><summary>The ideal response sounds like...</summary><div class="detail-body">"Totally understand — and the insurance does cover the replacement, that's covered. What I want to show you is: since your roof is already coming off and going back on, the labor cost is already there. Adding a premium product right now costs a fraction of what it would cost as a standalone project in five years. This is the one window where upgrading makes financial sense. Can I show you the difference in cost?"</div></details>
-      <div class="notes-area"><div class="notes-area-label">Notes</div><textarea placeholder="Did they reframe timing? Did they stay calm? Overcomplicate?" oninput="autoResize(this)" data-key="rp-insurance"></textarea></div>
-      <div class="check-row"><div class="check-toggle"><button onclick="setCheck(this,'rp-insurance','pass')">Pass</button><button onclick="setCheck(this,'rp-insurance','flag')">Flag</button><button onclick="setCheck(this,'rp-insurance','fail')">No</button></div><span class="check-label">Reframes timing — keeps it simple and client-focused</span></div>
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-fu">Follow-up A</span></div>
+      <div class="q-line editable" contenteditable="true" data-key="s7-fua">"And would you say that was primarily personal production, leadership overrides, salary, team performance — or more of a mix?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
     </div>
-
-    <div class="question-block">
-      <div class="question-label"><span class="q-num">2</span> The money objection <span class="tag-rp">roleplay</span></div>
-      <p style="font-size:11px;color:var(--ink3);margin-bottom:6px;font-style:italic">Read this to them:</p>
-      <div class="rp-homeowner-line" contenteditable="true">"I hear you, but honestly — I just don't have the money for upgrades right now."</div>
-      <div class="listen-grid">
-        <div class="listen-col good"><div class="listen-col-title">✓ Strong response</div><div class="listen-item">Slows down — doesn't panic or immediately discount</div><div class="listen-item">Asks a question: "when you say you don't have the money, are you thinking cash or...?"</div><div class="listen-item">Explores financing without pushing it</div><div class="listen-item">Finds out if it's a real budget constraint or a value objection in disguise</div></div>
-        <div class="listen-col bad"><div class="listen-col-title">✗ Weak response</div><div class="listen-item">Accepts it and moves on — lost the deal without a fight</div><div class="listen-item">Immediately drops the upgrade — "okay, we can just do basic"</div><div class="listen-item">Pushes financing before understanding the real objection</div></div>
-      </div>
-      <details class="toggle-detail blue" style="margin-bottom:10px"><summary>The ideal response sounds like...</summary><div class="detail-body">"I hear you — and I don't want to put you in a position that doesn't make sense. Can I ask — when you say you don't have the money, are you thinking about this as a cash expense right now? Because we do have financing options that spread this out, and a lot of homeowners find the monthly difference is smaller than they expected. Would that be worth looking at for a second?"</div></details>
-      <div class="notes-area"><div class="notes-area-label">Notes</div><textarea placeholder="Did they slow down and ask? Or panic and drop the upgrade?" oninput="autoResize(this)" data-key="rp-money"></textarea></div>
-      <div class="check-row"><div class="check-toggle"><button onclick="setCheck(this,'rp-money','pass')">Pass</button><button onclick="setCheck(this,'rp-money','flag')">Flag</button><button onclick="setCheck(this,'rp-money','fail')">No</button></div><span class="check-label">Asks, doesn't assume — explores before accepting</span></div>
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-fu">Follow-up B — if mix</span></div>
+      <div class="q-line editable" contenteditable="true" data-key="s7-fub">"And if you had to roughly break that down — what percentage came from your own production versus leadership or overrides?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+      <div class="notes"><div class="notes-lbl">Notes — production vs. override breakdown</div><textarea placeholder="What % was their own production?" oninput="ar(this);sv()" data-key="n-comp2"></textarea></div>
     </div>
-
-    <div class="question-block">
-      <div class="question-label"><span class="q-num">3</span> The selling-the-house objection <span class="tag-rp">roleplay</span></div>
-      <p style="font-size:11px;color:var(--ink3);margin-bottom:6px;font-style:italic">Read this to them:</p>
-      <div class="rp-homeowner-line" contenteditable="true">"We're actually planning to sell the house in the next year or two. Now's not the time to invest in upgrades — I'll let the new owners deal with it."</div>
-      <div class="listen-grid">
-        <div class="listen-col good"><div class="listen-col-title">✓ Strong response</div><div class="listen-item">Flips the frame immediately: upgrades increase listing value and differentiate the home</div><div class="listen-item">Makes it about the seller's return, not the product</div><div class="listen-item">"A new roof with premium materials is a selling point — basic coverage is the minimum buyers expect"</div></div>
-        <div class="listen-col bad"><div class="listen-col-title">✗ Weak response</div><div class="listen-item">Agrees and drops the upgrade entirely</div><div class="listen-item">Pushes back on the selling plan — "are you sure you're selling?"</div><div class="listen-item">Can't make the ROI argument for upgrades before a sale</div></div>
-      </div>
-      <details class="toggle-detail blue" style="margin-bottom:10px"><summary>The ideal response sounds like...</summary><div class="detail-body">"Actually, if you're selling — this matters even more. Buyers are going to inspect that roof and the quality of the materials will show up in the report. A premium roof is a selling point you can market. Basic coverage is the floor — everyone expects it. You're already replacing the roof; the upgrade cost is marginal compared to what it does for your listing price and buyer confidence."</div></details>
-      <div class="notes-area"><div class="notes-area-label">Notes</div><textarea placeholder="Did they flip it into a selling advantage? Or fold?" oninput="autoResize(this)" data-key="rp-selling"></textarea></div>
-      <div class="check-row"><div class="check-toggle"><button onclick="setCheck(this,'rp-selling','pass')">Pass</button><button onclick="setCheck(this,'rp-selling','flag')">Flag</button><button onclick="setCheck(this,'rp-selling','fail')">No</button></div><span class="check-label">Flips to listing value — makes the ROI case</span></div>
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-q">Comp satisfaction</span></div>
+      <div class="q-line editable" contenteditable="true" data-key="s7-sat">"And honestly — did you generally feel like the compensation structure matched the value you were bringing, the effort you were putting in, and the level you were performing at?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
     </div>
-
-    <div class="question-block">
-      <div class="question-label"><span class="q-num">4</span> The spouse objection <span class="tag-rp">roleplay</span></div>
-      <p style="font-size:11px;color:var(--ink3);margin-bottom:6px;font-style:italic">Read this to them:</p>
-      <div class="rp-homeowner-line" contenteditable="true">"This sounds interesting but I can't decide without talking to my husband first. He handles the finances."</div>
-      <div class="listen-grid">
-        <div class="listen-col good"><div class="listen-col-title">✓ Strong response</div><div class="listen-item">Does NOT push to close right now — respects the process</div><div class="listen-item">Sets a specific next step: "Absolutely — can we get a time this week when you're both available?"</div><div class="listen-item">Offers to prepare materials for the conversation with the spouse</div><div class="listen-item">Keeps the momentum without forcing a decision</div></div>
-        <div class="listen-col bad"><div class="listen-col-title">✗ Weak response</div><div class="listen-item">Tries to close right now anyway — creates resentment and loses the deal</div><div class="listen-item">Leaves it completely open — "okay just let me know"</div><div class="listen-item">No next step — deal dies in the follow-up black hole</div></div>
-      </div>
-      <details class="toggle-detail blue" style="margin-bottom:10px"><summary>The ideal response sounds like...</summary><div class="detail-body">"Of course — this is a joint decision and I wouldn't want you to feel rushed. Can we find a time this week, even just 20 minutes, when you're both available? I'd love to walk through it together so he has the same information you have and any questions get answered. Would Thursday evening or Saturday morning work?"</div></details>
-      <div class="notes-area"><div class="notes-area-label">Notes</div><textarea placeholder="Did they respect the pause? Did they set a specific next step?" oninput="autoResize(this)" data-key="rp-spouse"></textarea></div>
-      <div class="check-row"><div class="check-toggle"><button onclick="setCheck(this,'rp-spouse','pass')">Pass</button><button onclick="setCheck(this,'rp-spouse','flag')">Flag</button><button onclick="setCheck(this,'rp-spouse','fail')">No</button></div><span class="check-label">Sets specific next step — doesn't push or abandon</span></div>
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-fu">Follow-up</span></div>
+      <div class="q-line editable" contenteditable="true" data-key="s7-satfu">"What specifically made you feel that way?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
     </div>
-
-    <div class="question-block">
-      <div class="question-label"><span class="q-num">5</span> The stall objection <span class="tag-rp">roleplay</span></div>
-      <p style="font-size:11px;color:var(--ink3);margin-bottom:6px;font-style:italic">Read this to them:</p>
-      <div class="rp-homeowner-line" contenteditable="true">"I just need a little more time to think about it. I'll let you know."</div>
-      <div class="listen-grid">
-        <div class="listen-col good"><div class="listen-col-title">✓ Strong response</div><div class="listen-item">Doesn't accept the vague close — "I completely understand — what specifically is making you hesitate?"</div><div class="listen-item">Identifies the real underlying concern before agreeing to follow up</div><div class="listen-item">Gets a specific callback time — not just "I'll be in touch"</div></div>
-        <div class="listen-col bad"><div class="listen-col-title">✗ Weak response</div><div class="listen-item">"Sure, take your time" — the deal is dead and they don't know it</div><div class="listen-item">Pushes harder without understanding the real hesitation</div><div class="listen-item">No effort to surface the actual objection</div></div>
-      </div>
-      <details class="toggle-detail blue" style="margin-bottom:10px"><summary>The ideal response sounds like...</summary><div class="detail-body">"Absolutely, I never want you to feel rushed. Can I ask — is there a specific part of this you're not sure about? Because sometimes what feels like 'I need to think' is actually a specific question that hasn't been answered yet, and I'd rather answer it now than leave you with something unresolved. What's on your mind?"</div></details>
-      <div class="notes-area"><div class="notes-area-label">Notes</div><textarea placeholder="Did they surface the real objection? Or just accept the stall?" oninput="autoResize(this)" data-key="rp-stall"></textarea></div>
-      <div class="check-row"><div class="check-toggle"><button onclick="setCheck(this,'rp-stall','pass')">Pass</button><button onclick="setCheck(this,'rp-stall','flag')">Flag</button><button onclick="setCheck(this,'rp-stall','fail')">No</button></div><span class="check-label">Surfaces the real objection — doesn't accept the stall</span></div>
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-q">Ideal structure</span></div>
+      <div class="q-line editable" contenteditable="true" data-key="s7-ideal">"And ideally, what kind of compensation structure do you feel brings out your best performance?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+      <div class="prompt amber"><span class="ptitle">If they reverse the frame — "depends what you're offering"</span>"Absolutely — and we'll definitely go deeper into the structure. The reason I like asking first is because I've noticed strong salespeople tend to perform very differently depending on what motivates them, what kind of structure they thrive in, and what they value long-term. So I always like understanding that first before tying it back to the opportunity."</div>
+      <div class="notes"><div class="notes-lbl">Notes</div><textarea placeholder="What structure did they say brings out their best?" oninput="ar(this);sv()" data-key="n-comp3"></textarea></div>
     </div>
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-ctx">Opportunity Context</span></div>
+      <div class="prompt gold"><span class="ptitle">Watch their first question after this</span><strong>Strong:</strong> "Where is the team currently at?" — already thinking about the gap. <strong>Weak:</strong> "What if the gate isn't hit?" — first question is about failure. That first question is the most revealing thing they say here.</div>
+      <div class="ctx-line editable" contenteditable="true" data-key="s7-ctx">"To give you more context around why this role is interesting — the upside here really comes from somebody being able to elevate team performance operationally.
 
-    <div class="question-block">
-      <div class="question-label"><span class="q-num">6</span> The competitor objection <span class="tag-rp">roleplay</span></div>
-      <p style="font-size:11px;color:var(--ink3);margin-bottom:6px;font-style:italic">Read this to them:</p>
-      <div class="rp-homeowner-line" contenteditable="true">"I want to get a few more quotes. And actually — I have a friend who does roofing, so I'm probably going to go with him."</div>
-      <div class="listen-grid">
-        <div class="listen-col good"><div class="listen-col-title">✓ Strong response</div><div class="listen-item">Doesn't panic or go negative about the friend</div><div class="listen-item">Raises the insurance claim risk — "working with an unlicensed contractor on an insurance job can void the claim"</div><div class="listen-item">Competes on reliability, warranty, and the insurance process — not price</div><div class="listen-item">Stays warm — "I think that's a fair thing to explore"</div></div>
-        <div class="listen-col bad"><div class="listen-col-title">✗ Weak response</div><div class="listen-item">Speaks negatively about the friend or competition</div><div class="listen-item">Immediately tries to match price or discount</div><div class="listen-item">Gets defensive or aggressive</div><div class="listen-item">Accepts the loss without addressing the trust issue</div></div>
+Right now the team is sitting around 75% closing and roughly 9.45% upgrades.
+
+Part of the compensation structure includes overrides tied to improving team closing percentage and team upgrade percentage.
+
+So the opportunity isn't just personal production. The real upside is for somebody who genuinely knows how to build standards, improve performance, increase upgrades, coach effectively, and elevate the overall team."</div>
+      <div class="edit-hint">✎ Click to edit</div>
+      <div class="lgrid">
+        <div class="lcol good"><div class="lcol-title">✓ Strong reaction</div><div class="litem" data-li="li-017" onclick="toggleLi(this)">"Where is the team currently?" — thinking about the path to unlock</div><div class="litem" data-li="li-018" onclick="toggleLi(this)">Engages with the upgrade % — asks what's been tried</div></div>
+        <div class="lcol bad"><div class="lcol-title">✗ Red flags</div><div class="litem" data-li="li-019" onclick="toggleLi(this)">"What if the gate isn't hit?" — planning for failure</div><div class="litem" data-li="li-020" onclick="toggleLi(this)">Visible drop in energy when they hear the gate</div></div>
       </div>
-      <details class="toggle-detail blue" style="margin-bottom:10px"><summary>The ideal response sounds like...</summary><div class="detail-body">"I think that's completely fair — I'd never tell you not to get other quotes. One thing I do want to flag: when you're dealing with an insurance claim, the contractor needs to be licensed and bonded to work within the claim process. Using someone outside of that can create complications with your adjuster or void portions of the claim. I'd just ask you to verify that your friend is set up for insurance work before you commit. Assuming they are — I'd still love the chance to show you what we bring to it."</div></details>
-      <div class="notes-area"><div class="notes-area-label">Notes</div><textarea placeholder="Did they stay warm? Did they raise the insurance risk angle? Any negativity about competitor?" oninput="autoResize(this)" data-key="rp-competitor"></textarea></div>
-      <div class="check-row"><div class="check-toggle"><button onclick="setCheck(this,'rp-competitor','pass')">Pass</button><button onclick="setCheck(this,'rp-competitor','flag')">Flag</button><button onclick="setCheck(this,'rp-competitor','fail')">No</button></div><span class="check-label">Competes on trust and risk — not price, not negativity</span></div>
+      <div class="notes"><div class="notes-lbl">Notes — their exact first question</div><textarea placeholder="Write their first question word for word." oninput="ar(this);sv()" data-key="n-comp4"></textarea></div>
+      <div class="chrow"><div class="chtog"><button onclick="sc(this,'c-comp','pass')">Pass</button><button onclick="sc(this,'c-comp','flag')">Flag</button><button onclick="sc(this,'c-comp','fail')">No</button></div><span class="chlbl">First question is about winning — not about failing</span></div>
     </div>
-
   </div>
 </div>
 
-<!-- VIII CLOSING & COMP -->
-<div class="section-card" id="sec-8">
-  <div class="section-header"><div class="section-num">VIII</div><div class="section-title">Closing & Compensation</div><div class="section-goal">The gate conditions will filter for you. Watch the reaction.</div></div>
-  <div class="section-body">
-    <details class="toggle-detail gold" style="margin-bottom:1.25rem"><summary>Context for you</summary><div class="detail-body"><b class="hl">The comp structure is intentionally performance-gated.</b> The override is only unlocked if the team hits 83% closing AND 15% upgrade. A strong candidate hears this and immediately thinks about how to get the team there. A weak candidate immediately asks what happens if the gate isn't hit. <b class="hl">That first question tells you everything about their confidence in their own ability to lead.</b></div></details>
-    <div class="comp-grid">
-      <div class="comp-item"><div class="comp-item-label">Base salary</div><div class="comp-item-val">$70,000</div><div class="comp-item-sub">Annually</div></div>
-      <div class="comp-item"><div class="comp-item-label">Target year 1</div><div class="comp-item-val">$95–125K</div><div class="comp-item-sub">Base + production + override + bonus</div></div>
-      <div class="comp-item"><div class="comp-item-label">Personal production</div><div class="comp-item-val">5% retail/upgrades</div><div class="comp-item-sub">2.5% on ACV / non-recoverable</div></div>
-      <div class="comp-item"><div class="comp-item-label">Quarterly bonus</div><div class="comp-item-val">Up to $5,000</div><div class="comp-item-sub">83% → $1K / 90% → $2K / 95%+ → $5K</div></div>
+<!-- VIII SYSTEMS THINKING -->
+<div class="sec-card" id="sec-8">
+  <div class="sec-head"><div class="sec-num">VIII</div><div class="sec-title">Systems &amp; Operational Thinking</div><div class="sec-goal">Have they actually built something — or managed something someone else built?</div></div>
+  <div class="sec-body">
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-q">Q5</span></div>
+      <div class="q-line editable" contenteditable="true" data-key="s8-q5">"Have you ever personally helped improve closing percentage, upgrade percentage, revenue per deal, or overall production performance on a team?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
     </div>
-    <div class="comp-gate">
-      <div class="comp-gate-title">Override gate — only unlocked when:</div>
-      <div class="comp-gate-row">Team closing % ≥ 83% AND team upgrade % ≥ 15%</div>
-      <div class="comp-gate-row">83–94% closing → 1.5% override on team upgrade revenue</div>
-      <div class="comp-gate-row">95%+ closing → 3% override on team upgrade revenue</div>
-      <div class="comp-gate-row">If either gate is missed → no override that period</div>
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-fu">Follow-up A</span></div>
+      <div class="q-line editable" contenteditable="true" data-key="s8-fua">"What specifically did you implement?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+      <div class="prompt gold"><span class="ptitle">If they stay vague — go deeper</span>"When I say implement, I mean things like: trainings, roleplay, accountability structures, scripting changes, reporting, objection handling, appointment structure, leadership cadence. What were the actual changes you made?"</div>
     </div>
-    <div class="question-block">
-      <div class="question-label"><span class="q-num">1</span> Comp delivery <span class="tag-deal">deal-breaker</span></div>
-      <div class="question-text" contenteditable="true" title="Click to edit">"Here's the comp structure, <span class="cn">___</span>. Base is $70K. Your personal production earns you 5% on retail and upgrades, 2.5% on ACV. The team override — which is where your highest earning potential sits — is gated. You only unlock it when the team hits 83% closing AND 15% upgrade. If either misses, no override that period. Total target year one is $95–125K. What's your first question?"</div>
-      <details class="toggle-detail green" style="margin-top:10px;margin-bottom:12px"><summary>What their first question tells you</summary><div class="detail-body"><b class="hl">Strong candidate:</b> "Where is the team currently at on those numbers?" — they're already thinking about the gap they need to close. <b class="hl">Weak candidate:</b> "What happens if we don't hit the gate?" — they're already planning for failure. The first question is the most revealing thing they'll say in this section.</div></details>
-      <div class="listen-grid">
-        <div class="listen-col good"><div class="listen-col-title">✓ Strong reaction</div><div class="listen-item">"Where is the team currently?" — thinking about the path to unlock</div><div class="listen-item">Confident about their ability to hit the gate — "that's achievable"</div><div class="listen-item">Asks about team structure, deal flow, or support — already thinking operationally</div></div>
-        <div class="listen-col bad"><div class="listen-col-title">✗ Red flags</div><div class="listen-item">"What if the gate isn't hit?" — first question is about failure</div><div class="listen-item">Tries to negotiate the base before proving anything</div><div class="listen-item">Visible drop in energy — the gate scared them</div></div>
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-fu">Follow-up B</span></div>
+      <div class="q-line editable" contenteditable="true" data-key="s8-fub">"How did you implement that operationally?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+    </div>
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-fu">Follow-up C</span></div>
+      <div class="q-line editable" contenteditable="true" data-key="s8-fuc">"And what measurable results came from it?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+      <div class="lgrid">
+        <div class="lcol good"><div class="lcol-title">✓ Strong</div><div class="litem" data-li="li-021" onclick="toggleLi(this)">Names the specific thing built — script, tracker, cadence</div><div class="litem" data-li="li-022" onclick="toggleLi(this)">Before and after numbers — "68% to 79% in 6 weeks"</div><div class="litem" data-li="li-023" onclick="toggleLi(this)">Can explain HOW they rolled it out</div></div>
+        <div class="lcol bad"><div class="lcol-title">✗ Red flags</div><div class="litem" data-li="li-024" onclick="toggleLi(this)">"We just did more trainings" — vague, no structure</div><div class="litem" data-li="li-025" onclick="toggleLi(this)">No numbers — they weren't tracking it</div><div class="litem" data-li="li-026" onclick="toggleLi(this)">It was someone else's system they inherited</div></div>
       </div>
-      <div class="exit-speech" id="exit-comp"><div class="exit-speech-header" onclick="toggleExit('exit-comp')">Exit speech — if they negotiate before they've earned anything</div><div class="exit-speech-body">"<span class="cn">___</span>, I hear you on the base — and I want to be transparent. The structure is designed so that the highest earning potential comes from team performance, not negotiating the floor. If the first instinct is to negotiate the base before you've produced a single result, that tells me something about where your confidence sits in your ability to earn through performance. That's the conversation I'd want us to have."</div></div>
-      <div class="notes-area"><div class="notes-area-label">Notes</div><textarea placeholder="What was their FIRST question exactly? Reaction to the gate?" oninput="autoResize(this)" data-key="comp-reaction"></textarea></div>
-      <div class="check-row"><div class="check-toggle"><button onclick="setCheck(this,'comp-reaction','pass')">Pass</button><button onclick="setCheck(this,'comp-reaction','flag')">Flag</button><button onclick="setCheck(this,'comp-reaction','fail')">No</button></div><span class="check-label">First question is about winning — not about failing</span></div>
+      <div class="notes"><div class="notes-lbl">Notes</div><textarea placeholder="What did they build? Before/after numbers? How did they roll it out?" oninput="ar(this);sv()" data-key="n-q5"></textarea></div>
+      <div class="chrow"><div class="chtog"><button onclick="sc(this,'c-systems','pass')">Pass</button><button onclick="sc(this,'c-systems','flag')">Flag</button><button onclick="sc(this,'c-systems','fail')">No</button></div><span class="chlbl">Built something with measurable results</span></div>
     </div>
-    <div class="question-block">
-      <div class="question-label"><span class="q-num">2</span> Final — their turn <span class="tag-jolt">jolt</span></div>
-      <div class="question-text" contenteditable="true" title="Click to edit">"Last one, <span class="cn">___</span> — and it's yours. What's the one thing about how you lead or how you close that you don't think came through in this interview?"</div>
-      <div class="listen-grid">
-        <div class="listen-col good"><div class="listen-col-title">✓ Strong close</div><div class="listen-item">Adds something specific and real — not a rehearsed strength</div><div class="listen-item">Shows genuine self-awareness about what didn't surface</div><div class="listen-item">Makes you want to hire them more than five minutes ago</div></div>
-        <div class="listen-col bad"><div class="listen-col-title">✗ Weak close</div><div class="listen-item">"I think you got a pretty good picture..." — no self-knowledge</div><div class="listen-item">Restates something already said</div><div class="listen-item">Goes back to comp or start date</div></div>
+  </div>
+</div>
+
+<!-- IX FUTURE THINKING -->
+<div class="sec-card" id="sec-9">
+  <div class="sec-head"><div class="sec-num">IX</div><div class="sec-title">Future Thinking &amp; Buy-In</div><div class="sec-goal">Do they think operationally — or just philosophically?</div></div>
+  <div class="sec-body">
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-q">Q6</span></div>
+      <div class="prompt red"><span class="ptitle">Do not interrupt</span>Let them build the whole answer. You are listening for operational thinking, not a rehearsed 30-60-90 speech. The longer you let them go, the more you learn.</div>
+      <div class="q-line editable" contenteditable="true" data-key="s9-q6">"So if you stepped into a role like this — what do you think your first 30, 60, and 90 days would probably focus on?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+      <div class="pause">⏸ Do not interrupt. Let them finish fully.</div>
+      <div class="notes"><div class="notes-lbl">Notes — their 30/60/90</div><textarea placeholder="What did they prioritize? Did they think about the team or just themselves?" oninput="ar(this);sv()" data-key="n-q6a"></textarea></div>
+    </div>
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-fu">Follow-up A</span></div>
+      <div class="prompt gold"><span class="ptitle">What you're listening for</span>A strong operator hears those numbers and immediately starts asking <em>why</em>. "Is the issue happening at the appointment or before it?" That kind of diagnostic thinking is what you want.</div>
+      <div class="q-line editable" contenteditable="true" data-key="s9-fua">"When you hear 75% closing, 9.45% upgrades — what does your brain immediately start diagnosing?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+    </div>
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-fu">Follow-up B</span></div>
+      <div class="q-line editable" contenteditable="true" data-key="s9-fub">"What do you think usually causes upgrade percentages to stay low on a team?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+      <div class="lgrid">
+        <div class="lcol good"><div class="lcol-title">✓ Strong diagnosis</div><div class="litem" data-li="li-027" onclick="toggleLi(this)">"Closers don't believe in the upgrade — confidence issue"</div><div class="litem" data-li="li-028" onclick="toggleLi(this)">"The conversation gets closed before the upgrade is introduced"</div><div class="litem" data-li="li-029" onclick="toggleLi(this)">Asks follow-up questions about current scripts</div></div>
+        <div class="lcol bad"><div class="lcol-title">✗ Surface-level</div><div class="litem" data-li="li-030" onclick="toggleLi(this)">"Just more training would probably fix it"</div><div class="litem" data-li="li-031" onclick="toggleLi(this)">Accepts the numbers without asking why</div></div>
       </div>
-      <div class="notes-area"><div class="notes-area-label">Notes</div><textarea placeholder="What did they add? Did it change your read on them?" oninput="autoResize(this)" data-key="close-final"></textarea></div>
-      <div class="check-row"><div class="check-toggle"><button onclick="setCheck(this,'close-final','pass')">Pass</button><button onclick="setCheck(this,'close-final','flag')">Flag</button><button onclick="setCheck(this,'close-final','fail')">No</button></div><span class="check-label">Strong close — self-aware, adds something real</span></div>
+      <div class="notes"><div class="notes-lbl">Notes — their diagnosis on 9.45% upgrades</div><textarea placeholder="Does it show operational depth?" oninput="ar(this);sv()" data-key="n-q6b"></textarea></div>
+      <div class="chrow"><div class="chtog"><button onclick="sc(this,'c-future','pass')">Pass</button><button onclick="sc(this,'c-future','flag')">Flag</button><button onclick="sc(this,'c-future','fail')">No</button></div><span class="chlbl">Operational thinker — diagnoses, doesn't just observe</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- X CULTURE & EMOTIONAL BUY-IN -->
+<div class="sec-card" id="sec-10">
+  <div class="sec-head"><div class="sec-num">X</div><div class="sec-title">Culture &amp; Emotional Buy-In</div><div class="sec-goal">What environment makes them dangerous — and what breaks them?</div></div>
+  <div class="sec-body">
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-q">Q7</span></div>
+      <div class="q-line editable" contenteditable="true" data-key="s10-q7">"What kind of sales culture genuinely brings out your best performance?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+      <div class="notes"><div class="notes-lbl">Notes</div><textarea placeholder="What environment do they thrive in? Does it match Proliance?" oninput="ar(this);sv()" data-key="n-q7a"></textarea></div>
+    </div>
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-fu">Follow-up</span></div>
+      <div class="prompt gold"><span class="ptitle">Read both answers together</span>If the draining environment sounds like Proliance — high accountability, close tracking, non-negotiable standards — take note. They'll quietly resist the role within 60 days.</div>
+      <div class="q-line editable" contenteditable="true" data-key="s10-fu">"What kind of environment drains you or causes performance to drop?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+      <div class="notes"><div class="notes-lbl">Notes — what drains them?</div><textarea placeholder="Any red flags for Proliance culture?" oninput="ar(this);sv()" data-key="n-q7b"></textarea></div>
+      <div class="chrow"><div class="chtog"><button onclick="sc(this,'c-culture','pass')">Pass</button><button onclick="sc(this,'c-culture','flag')">Flag</button><button onclick="sc(this,'c-culture','fail')">No</button></div><span class="chlbl">Culture alignment — thrives in high-standard environments</span></div>
+    </div>
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-q">Q8 — Emotional</span></div>
+      <div class="prompt green"><span class="ptitle">Two-part reveal</span>Excitement shows whether they're bought in or just interested. The challenge answer shows self-awareness. A candidate who can't name a real challenge is overconfident or not paying attention.</div>
+      <div class="q-line editable" contenteditable="true" data-key="s10-q8">"What about this opportunity genuinely excites you? And what about it do you think would challenge you?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+      <div class="notes"><div class="notes-lbl">Notes</div><textarea placeholder="What excited them? What challenge did they name — was it real?" oninput="ar(this);sv()" data-key="n-q8"></textarea></div>
+      <div class="chrow"><div class="chtog"><button onclick="sc(this,'c-buyin','pass')">Pass</button><button onclick="sc(this,'c-buyin','flag')">Flag</button><button onclick="sc(this,'c-buyin','fail')">No</button></div><span class="chlbl">Genuine excitement + self-aware challenge named</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- XI THEIR QUESTIONS -->
+<div class="sec-card" id="sec-11">
+  <div class="sec-head"><div class="sec-num">XI</div><div class="sec-title">Their Questions</div><div class="sec-goal">What they ask tells you more than most of their answers.</div></div>
+  <div class="sec-body">
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-q">Q9</span></div>
+      <div class="prompt gold"><span class="ptitle">Watch this very carefully</span>Strong candidates ask about standards, bottlenecks, team structure, and what success looks like. Weak candidates ask about comfort, ease, or "what if I miss target." The first question out of their mouth here is a character reveal.</div>
+      <div class="q-line editable" contenteditable="true" data-key="s11-q9">"What questions come to mind for you so far?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
+      <div class="lgrid">
+        <div class="lcol good"><div class="lcol-title">✓ Strong questions</div><div class="litem" data-li="li-032" onclick="toggleLi(this)">Current team standards and expectations</div><div class="litem" data-li="li-033" onclick="toggleLi(this)">"What's been tried before on upgrades?"</div><div class="litem" data-li="li-034" onclick="toggleLi(this)">Team structure and recruiting pipeline</div><div class="litem" data-li="li-035" onclick="toggleLi(this)">What success looks like in 90 days</div></div>
+        <div class="lcol bad"><div class="lcol-title">✗ Weak questions</div><div class="litem" data-li="li-036" onclick="toggleLi(this)">Comfort, ease, and flexibility first</div><div class="litem" data-li="li-037" onclick="toggleLi(this)">What happens if they don't hit targets</div><div class="litem" data-li="li-038" onclick="toggleLi(this)">Only asks about base — no questions about upside</div></div>
+      </div>
+      <div class="notes"><div class="notes-lbl">Notes — write their questions word for word</div><textarea placeholder="Write their exact questions. This reveals what they're actually thinking." oninput="ar(this);sv()" data-key="n-q9"></textarea></div>
+      <div class="chrow"><div class="chtog"><button onclick="sc(this,'c-qs','pass')">Pass</button><button onclick="sc(this,'c-qs','flag')">Flag</button><button onclick="sc(this,'c-qs','fail')">No</button></div><span class="chlbl">Questions about growth and performance — not comfort</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- XII CLOSING FRAME -->
+<div class="sec-card" id="sec-12">
+  <div class="sec-head"><div class="sec-num">XII</div><div class="sec-title">Closing Frame</div><div class="sec-goal">Leave them with the full picture — no surprises later.</div></div>
+  <div class="sec-body">
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-open">Closing</span></div>
+      <div class="prompt green"><span class="ptitle">Why close this way</span>You're giving them one final chance to self-select out. A strong candidate will feel energized by this. A hesitant one will reveal themselves in their final reaction — watch it closely.</div>
+      <div class="q-line editable" contenteditable="true" data-key="s12-close">"Honestly, I appreciate you being open throughout the conversation.
+
+This role is definitely not a sit-back management role. The person stepping into it has to lead from the front, elevate standards, improve production, coach through pressure, and still perform personally at a high level.
+
+From our side, we'll internally discuss alignment from both a leadership and production standpoint.
+
+And from your side, I'd encourage you to really think through whether this is the kind of challenge and environment you genuinely want long-term."</div>
+      <div class="edit-hint">✎ Click to edit</div>
+      <div class="notes"><div class="notes-lbl">Notes — their reaction to the closing frame</div><textarea placeholder="Did they lean in or pull back? What was their final energy?" oninput="ar(this);sv()" data-key="n-close"></textarea></div>
+    </div>
+    <div class="sblock">
+      <div class="blabel"><span class="btag btag-fu">Next steps</span></div>
+      <div class="q-line editable" contenteditable="true" data-key="s12-next">"So here's what I'll do on my end — I'll be in touch within [X days] with next steps. We'll be setting up a deeper leadership interview if everything looks aligned on both sides. Any last questions before I let you go?"</div>
+      <div class="edit-hint">✎ Click to edit</div>
     </div>
   </div>
 </div>
 
 <!-- SUMMARY -->
-<div class="summary-card" id="sec-9">
-  <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--gold);margin-bottom:4px">Interview Summary</h2>
-  <p style="font-size:12px;color:var(--ink3);margin-bottom:1.25rem" id="summary-subhead">Candidate: —</p>
-  <div id="summary-rows"></div>
-  <div id="verdict-banner" class="verdict-banner" style="display:none"></div>
+<div class="sum-card" id="sec-13">
+  <div class="sum-title">Interview Summary</div>
+  <div class="sum-sub" id="sum-sub">Candidate: —</div>
+  <div id="sum-rows"></div>
+  <div id="sum-verdict" class="verdict" style="display:none"></div>
   <div style="margin-top:1.5rem">
-    <div style="font-size:10px;color:var(--ink3);margin-bottom:6px;text-transform:uppercase;letter-spacing:.07em">Overall notes</div>
-    <textarea id="overall-notes" style="width:100%;background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-family:'Inter',sans-serif;font-size:13px;color:var(--ink);resize:none;min-height:80px;outline:none" placeholder="Overall impression, gut feel, anything that stood out..."></textarea>
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:6px">Overall impression</div>
+    <textarea id="overall-notes" style="width:100%;background:#fff;border:1px solid var(--bd);border-radius:8px;padding:10px 12px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);resize:none;min-height:80px;outline:none;line-height:1.5" placeholder="Gut feel, standout moments, concerns, overall read..." oninput="ar(this);sv()"></textarea>
+  </div>
+  <div style="margin-top:1.5rem">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:10px">Notes by section</div>
+    <div id="sum-notes"></div>
   </div>
   <button class="copy-btn" onclick="copySummary()">Copy full summary ↗</button>
 </div>
 
-<div class="nav-bar">
-  <button class="nav-btn" onclick="prevSection()" id="btn-prev" style="display:none">← Back</button>
-  <button class="nav-btn primary" onclick="nextSection()" id="btn-next">Begin →</button>
+<div class="navbar">
+  <button class="nbtn" id="btn-prev" onclick="prevSec()" style="display:none">← Back</button>
+  <button class="nbtn primary" id="btn-next" onclick="nextSec()">Begin →</button>
 </div>
+
 </main>
 </div>
 
 <script>
-const sections=['sec-0','sec-1','sec-2','sec-3','sec-4','sec-5','sec-6','sec-7','sec-8','sec-9'];
-const navItems=document.querySelectorAll('.nav-item');
-let current=0;
-const checkState={};
-const checkMap=[
-  {key:'intro-sentence',label:'Self-aware, precise, result-oriented',must:false},
-  {key:'prod-numbers',label:'Gave exact numbers — no hedging',must:true},
-  {key:'prod-hardest',label:'Strategic closer — not just persistent',must:false},
-  {key:'prod-lost',label:'Owns losses — no blame language',must:false},
-  {key:'coach-track',label:'Real coaching results — named & numbered',must:true},
-  {key:'coach-tension',label:'Framework for production vs. team tension',must:false},
-  {key:'under-hypothetical',label:'Holds the standard — clear timeline',must:true},
-  {key:'under-real',label:'Has actually done it — real story',must:false},
-  {key:'press-slump',label:'Owns the slump — identifies specific fix',must:false},
-  {key:'press-dual',label:'Owns team performance as their responsibility',must:true},
-  {key:'cult-habit',label:'Leadership instincts align with our culture',must:false},
-  {key:'cult-weekend',label:'Weekend availability confirmed',must:true},
-  {key:'rp-insurance',label:'Roleplay: timing reframe — simple & clear',must:false},
-  {key:'rp-money',label:'Roleplay: asks before assuming',must:false},
-  {key:'rp-selling',label:'Roleplay: flips to listing value',must:false},
-  {key:'rp-spouse',label:'Roleplay: sets specific next step',must:false},
-  {key:'rp-stall',label:'Roleplay: surfaces the real objection',must:false},
-  {key:'rp-competitor',label:'Roleplay: competes on trust not price',must:false},
-  {key:'comp-reaction',label:'First question is about winning — not failing',must:true},
-  {key:'close-final',label:'Strong close — self-aware',must:false},
+const SECS=Array.from({length:14},(_,i)=>'sec-'+i);
+const navBtns=document.querySelectorAll('.nav-item');
+let cur=0;
+const chk={};
+const liChk={};
+const PFX='proliance_etl2_';
+
+const CM=[
+  {key:'c-q1',     label:'Self-aware and precise',                    must:false},
+  {key:'c-q2',     label:'Moving toward growth — not just running',   must:false},
+  {key:'c-pc',     label:'Genuine player-coach identity',             must:true},
+  {key:'c-growth', label:'Clear growth direction — self-aware',       must:false},
+  {key:'c-comp',   label:'First question is about winning',           must:true},
+  {key:'c-systems',label:'Built something with measurable results',   must:true},
+  {key:'c-future', label:'Operational thinker — diagnoses issues',    must:false},
+  {key:'c-culture',label:'Culture alignment — high-standard mindset', must:false},
+  {key:'c-buyin',  label:'Genuine excitement + self-aware challenge', must:false},
+  {key:'c-qs',     label:'Questions about growth — not comfort',      must:false},
 ];
-function getName(){return document.getElementById('input-candidate').value.trim()||'___';}
-function getRecruiter(){return document.getElementById('input-recruiter').value.trim()||'___';}
-function updateNames(){
-  const cn=getName(),rn=getRecruiter();
-  document.querySelectorAll('.cn').forEach(el=>{el.textContent=cn;});
-  document.querySelectorAll('.rn').forEach(el=>{el.textContent=rn;});
-  const sh=document.getElementById('summary-subhead');
-  if(sh)sh.textContent='Candidate: '+(cn==='___'?'—':cn);
+
+function buildDash(){
+  const c=document.getElementById('d-checks');
+  c.innerHTML='';
+  CM.forEach(x=>{
+    const v=chk[x.key]||'';
+    const r=document.createElement('div');
+    r.className='dc-row';
+    r.innerHTML=`<span class="dc-dot ${v}" id="dot-${x.key}"></span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px">${x.label}</span>${x.must?'<span class="dc-must">MUST</span>':''}`;
+    c.appendChild(r);
+  });
 }
+
+function toggleLi(el){
+  const key=el.dataset.li;
+  if(!key)return;
+  const wasChecked=liChk[key];
+  liChk[key]=!wasChecked;
+  el.classList.toggle('checked',liChk[key]);
+  sv();
+}
+
+function updateDash(){
+  CM.forEach(x=>{
+    const d=document.getElementById('dot-'+x.key);
+    if(d) d.className='dc-dot '+(chk[x.key]||'');
+  });
+  const passed=CM.filter(x=>chk[x.key]==='pass').length;
+  const pct=Math.round(passed/CM.length*100);
+  document.getElementById('d-score').textContent=passed+' / '+CM.length;
+  document.getElementById('d-fill').style.width=pct+'%';
+}
+
+function showSaved(){
+  const el=document.getElementById('save-status');
+  el.textContent='✓ Saved';el.className='save-pill saved';
+  clearTimeout(window._st);
+  window._st=setTimeout(()=>{el.textContent='All changes saved';el.className='save-pill';},2000);
+}
+
+function sv(){
+  document.querySelectorAll('.editable[data-key]').forEach(el=>localStorage.setItem(PFX+el.dataset.key,el.innerText));
+  document.querySelectorAll('textarea[data-key]').forEach(el=>localStorage.setItem(PFX+el.dataset.key,el.value));
+  CM.forEach(x=>localStorage.setItem(PFX+x.key,chk[x.key]||''));
+  Object.keys(liChk).forEach(k=>localStorage.setItem(PFX+k,liChk[k]?'1':''));
+  ['inp-cn','inp-rn','inp-dt','inp-src'].forEach(id=>{const el=document.getElementById(id);if(el)localStorage.setItem(PFX+id,el.value);});
+  const on=document.getElementById('overall-notes');
+  if(on)localStorage.setItem(PFX+'overall-notes',on.value);
+  showSaved();
+}
+
+function loadAll(){
+  document.querySelectorAll('.editable[data-key]').forEach(el=>{const s=localStorage.getItem(PFX+el.dataset.key);if(s!==null)el.innerText=s;});
+  document.querySelectorAll('textarea[data-key]').forEach(el=>{const s=localStorage.getItem(PFX+el.dataset.key);if(s!==null){el.value=s;ar(el);}});
+  CM.forEach(x=>{
+    const s=localStorage.getItem(PFX+x.key);
+    if(s){chk[x.key]=s;applyBtn(x.key,s);}
+  });
+  ['inp-cn','inp-rn','inp-dt','inp-src'].forEach(id=>{const el=document.getElementById(id);const s=localStorage.getItem(PFX+id);if(el&&s!==null)el.value=s;});
+  updateNames();
+  const on=document.getElementById('overall-notes');
+  const son=localStorage.getItem(PFX+'overall-notes');
+  if(on&&son!==null)on.value=son;
+  // restore litem checked states
+  document.querySelectorAll('.litem[data-li]').forEach(el=>{
+    const k=el.dataset.li;
+    const saved=localStorage.getItem(PFX+k);
+    if(saved==='1'){liChk[k]=true;el.classList.add('checked');}
+  });
+  updateDash();
+}
+
+function applyBtn(key,val){
+  document.querySelectorAll('.chtog button').forEach(btn=>{
+    if(btn.getAttribute('onclick')&&btn.getAttribute('onclick').includes("'"+key+"'")){
+      const row=btn.closest('.chrow');
+      if(row){row.querySelectorAll('.chtog button').forEach(b=>b.className='');const t=row.querySelector(`.chtog button[onclick*="'${val}'"]`);if(t)t.className=val;}
+    }
+  });
+}
+
+function updateNames(){
+  const cn=document.getElementById('inp-cn').value.trim()||'Name';
+  document.querySelectorAll('.cn-ph').forEach(el=>el.textContent=cn);
+  const sh=document.getElementById('sum-sub');
+  if(sh)sh.textContent='Candidate: '+(cn==='Name'?'—':cn);
+  sv();
+}
+
 function goTo(idx){
-  document.getElementById(sections[current]).classList.remove('visible');
-  navItems[current].classList.remove('active');
-  current=idx;
-  document.getElementById(sections[current]).classList.add('visible');
-  navItems[current].classList.add('active');
-  document.getElementById('btn-prev').style.display=current===0?'none':'inline-block';
+  document.getElementById(SECS[cur]).classList.remove('visible');
+  navBtns[cur].classList.remove('active');
+  cur=idx;
+  document.getElementById(SECS[cur]).classList.add('visible');
+  navBtns[cur].classList.add('active');
+  document.getElementById('btn-prev').style.display=cur===0?'none':'inline-block';
   const nb=document.getElementById('btn-next');
-  nb.textContent=current===sections.length-1?'Done':current===0?'Begin →':'Next →';
-  if(current===sections.length-1)buildSummary();
+  nb.textContent=cur===SECS.length-1?'Done':cur===0?'Begin →':'Next →';
+  if(cur===SECS.length-1)buildSummary();
   window.scrollTo(0,0);
 }
-function nextSection(){if(current<sections.length-1)goTo(current+1);}
-function prevSection(){if(current>0)goTo(current-1);}
-function setCheck(btn,key,val){
-  const row=btn.closest('.check-row');
-  row.querySelectorAll('.check-toggle button').forEach(b=>{b.className='';});
-  if(checkState[key]===val){checkState[key]=null;}
-  else{checkState[key]=val;btn.className=val;}
-  updateScore();
+function nextSec(){if(cur<SECS.length-1)goTo(cur+1);}
+function prevSec(){if(cur>0)goTo(cur-1);}
+
+function sc(btn,key,val){
+  const row=btn.closest('.chrow');
+  row.querySelectorAll('.chtog button').forEach(b=>b.className='');
+  if(chk[key]===val){chk[key]=null;}
+  else{chk[key]=val;btn.className=val;}
+  updateDash();sv();
 }
-function updateScore(){
-  const total=checkMap.length;
-  const passed=checkMap.filter(c=>checkState[c.key]==='pass').length;
-  const pct=Math.round((passed/total)*100);
-  document.getElementById('sidebar-score').textContent=passed+' / '+total;
-  document.getElementById('sidebar-fill').style.width=pct+'%';
-}
+
 function buildSummary(){
-  const cn=getName();
-  const sh=document.getElementById('summary-subhead');
-  if(sh)sh.textContent='Candidate: '+(cn==='___'?'—':cn);
-  const container=document.getElementById('summary-rows');
+  const cn=document.getElementById('inp-cn').value.trim();
+  const sh=document.getElementById('sum-sub');
+  if(sh)sh.textContent='Candidate: '+(cn||'—');
+  const container=document.getElementById('sum-rows');
   container.innerHTML='';
-  checkMap.forEach(c=>{
-    const val=checkState[c.key];
-    let sc='s-blank',st='—';
-    if(val==='pass'){sc='s-pass';st='Pass';}
-    else if(val==='fail'){sc='s-fail';st='No';}
-    else if(val==='flag'){sc='s-flag';st='Flag';}
+  CM.forEach(x=>{
+    const val=chk[x.key];
+    let sc='sp-blank',st='—';
+    if(val==='pass'){sc='sp-pass';st='Pass';}
+    else if(val==='fail'){sc='sp-fail';st='No';}
+    else if(val==='flag'){sc='sp-flag';st='Flag';}
     const row=document.createElement('div');
-    row.className='summary-row';
-    row.innerHTML='<span class="summary-row-label">'+(c.must?'<strong style="color:var(--red)">* </strong>':'')+c.label+'</span><span class="summary-status '+sc+'">'+st+'</span>';
+    row.className='sum-row';
+    row.innerHTML='<span style="font-size:13px;color:var(--ink2)">'+(x.must?'<strong style="color:var(--red)">* </strong>':'')+x.label+'</span><span class="spill '+sc+'">'+st+'</span>';
     container.appendChild(row);
   });
-  const mustFails=checkMap.filter(c=>c.must&&checkState[c.key]==='fail');
-  const passed=checkMap.filter(c=>checkState[c.key]==='pass').length;
-  const pct=Math.round((passed/checkMap.length)*100);
-  const banner=document.getElementById('verdict-banner');
+  const mf=CM.filter(x=>x.must&&chk[x.key]==='fail');
+  const passed=CM.filter(x=>chk[x.key]==='pass').length;
+  const pct=Math.round(passed/CM.length*100);
+  const banner=document.getElementById('sum-verdict');
   banner.style.display='block';
-  if(mustFails.length>0){banner.className='verdict-banner verdict-pass';banner.textContent='Do not advance — missing must-have: '+mustFails.map(c=>c.label).join(', ');}
-  else if(pct>=70){banner.className='verdict-banner verdict-strong';banner.textContent='Strong candidate — recommend advancing ('+pct+'% criteria met)';}
-  else if(pct>=45){banner.className='verdict-banner verdict-maybe';banner.textContent='Maybe — needs further evaluation ('+pct+'% met)';}
-  else{banner.className='verdict-banner verdict-pass';banner.textContent='Not recommended — low criteria match ('+pct+'% met)';}
+  if(mf.length>0){banner.className='verdict verd-no';banner.textContent='Do not advance — missing must-have: '+mf.map(x=>x.label).join(', ');}
+  else if(pct>=70){banner.className='verdict verd-yes';banner.textContent='Strong candidate — recommend advancing ('+pct+'% criteria met)';}
+  else if(pct>=45){banner.className='verdict verd-maybe';banner.textContent='Maybe — needs further evaluation ('+pct+'% met)';}
+  else{banner.className='verdict verd-no';banner.textContent='Not recommended — low criteria match ('+pct+'% met)';}
+
+  // Build notes section
+  const sn=document.getElementById('sum-notes');
+  if(sn){
+    sn.innerHTML='';
+    // Collect all notes textareas with values
+    const noteEls=Array.from(document.querySelectorAll('textarea[data-key]'));
+    // Group by section card
+    const secMap={};
+    noteEls.forEach(el=>{
+      const sec=el.closest('.sec-card');
+      if(!sec||!el.value.trim())return;
+      const secId=sec.id;
+      const titleEl=sec.querySelector('.sec-title');
+      const secName=titleEl?titleEl.textContent:secId;
+      if(!secMap[secId])secMap[secId]={name:secName,notes:[],obs:[]};
+      const lbl=el.closest('.notes')?.querySelector('.notes-lbl')?.textContent||el.dataset.key;
+      secMap[secId].notes.push({lbl,val:el.value.trim()});
+    });
+    // Collect checked litems by section
+    document.querySelectorAll('.litem[data-li]').forEach(el=>{
+      if(!liChk[el.dataset.li])return;
+      const sec=el.closest('.sec-card');
+      if(!sec)return;
+      const secId=sec.id;
+      const titleEl=sec.querySelector('.sec-title');
+      const secName=titleEl?titleEl.textContent:secId;
+      if(!secMap[secId])secMap[secId]={name:secName,notes:[],obs:[]};
+      const isGood=el.closest('.lcol.good')!==null;
+      secMap[secId].obs.push({text:el.textContent.trim(),good:isGood});
+    });
+    Object.values(secMap).forEach(s=>{
+      if(!s.notes.length&&!s.obs.length)return;
+      const g=document.createElement('div');g.className='sum-note-group';
+      const t=document.createElement('div');t.className='sum-note-sec';t.textContent=s.name;g.appendChild(t);
+      s.notes.forEach(n=>{
+        const d=document.createElement('div');
+        d.innerHTML='<div style="font-size:10px;color:var(--ink3);margin-bottom:3px;font-weight:600">'+n.lbl+'</div><div class="sum-note-text">'+n.val.replace(/</g,'&lt;')+'</div>';
+        d.style.marginBottom='8px';
+        g.appendChild(d);
+      });
+      if(s.obs.length){
+        const od=document.createElement('div');od.className='sum-obs';
+        const ol=document.createElement('div');ol.style.cssText='font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:4px';ol.textContent='Observed';
+        od.appendChild(ol);
+        s.obs.forEach(o=>{
+          const oi=document.createElement('div');
+          oi.className='sum-obs-item '+(o.good?'good':'bad');
+          oi.textContent=o.text;
+          od.appendChild(oi);
+        });
+        g.appendChild(od);
+      }
+      sn.appendChild(g);
+    });
+    if(!sn.children.length){
+      sn.innerHTML='<div style="font-size:13px;color:var(--ink3);font-style:italic">No notes or observations recorded yet.</div>';
+    }
+  }
 }
-function toggleExit(id){document.getElementById(id).classList.toggle('open');}
-function autoResize(el){el.style.height='auto';el.style.height=el.scrollHeight+'px';}
+
 function copySummary(){
-  const cn=getName(),rn=getRecruiter();
-  const date=document.getElementById('input-date').value.trim();
-  const source=document.getElementById('input-source').value.trim();
-  const lines=['EXTERIOR DESIGN & CLOSING MANAGER — INTERVIEW SUMMARY',''];
-  if(cn!=='___')lines.push('Candidate: '+cn);
-  if(rn!=='___')lines.push('Recruiter: '+rn);
-  if(date)lines.push('Date: '+date);
-  if(source)lines.push('Source: '+source);
+  const cn=document.getElementById('inp-cn').value.trim();
+  const rn=document.getElementById('inp-rn').value.trim();
+  const dt=document.getElementById('inp-dt').value.trim();
+  const src=document.getElementById('inp-src').value.trim();
+  const lines=['EXTERIOR TEAM LEAD (PLAYER-COACH) — VETTING SUMMARY',''];
+  if(cn)lines.push('Candidate: '+cn);if(rn)lines.push('Recruiter: '+rn);if(dt)lines.push('Date: '+dt);if(src)lines.push('Source: '+src);
   lines.push('','CRITERIA (* = must-have)','');
-  checkMap.forEach(c=>{
-    const val=checkState[c.key];
-    const sym=val==='pass'?'[PASS]':val==='fail'?'[NO]  ':val==='flag'?'[FLAG]':'[ —  ]';
-    lines.push(sym+'  '+(c.must?'* ':'  ')+c.label);
+  CM.forEach(x=>{const val=chk[x.key];const sym=val==='pass'?'[PASS]':val==='fail'?'[NO]  ':val==='flag'?'[FLAG]':'[ —  ]';lines.push(sym+'  '+(x.must?'* ':' ')+x.label);});
+  const nl=[];
+  document.querySelectorAll('textarea[data-key]').forEach(el=>{if(el.value&&el.value.trim())nl.push('  '+el.dataset.key+': '+el.value.trim());});
+  if(nl.length){lines.push('','NOTES BY QUESTION');nl.forEach(n=>lines.push(n));}
+  // Checked litem observations
+  const obs=[];
+  document.querySelectorAll('.litem.checked[data-li]').forEach(el=>{
+    const isGood=el.closest('.lcol.good')!==null;
+    const sec=el.closest('.sec-card');
+    const sn=sec?sec.querySelector('.sec-title')?.textContent:'';
+    obs.push('  ['+(isGood?'✓':'✗')+'] '+sn+': '+el.textContent.trim());
   });
-  const noteLines=[];
-  document.querySelectorAll('[data-key]').forEach(el=>{if(el.value&&el.value.trim())noteLines.push('  '+el.dataset.key+': '+el.value.trim());});
-  if(noteLines.length){lines.push('','NOTES BY QUESTION');noteLines.forEach(n=>lines.push(n));}
+  if(obs.length){lines.push('','OBSERVED SIGNALS');obs.forEach(o=>lines.push(o));}
   const overall=document.getElementById('overall-notes').value.trim();
   if(overall){lines.push('','OVERALL IMPRESSION','  '+overall);}
   navigator.clipboard.writeText(lines.join('\n')).catch(()=>{});
   const btn=document.querySelector('.copy-btn');
-  btn.textContent='Copied!';
-  setTimeout(()=>{btn.textContent='Copy full summary ↗';},2000);
+  btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy full summary ↗',2000);
 }
+
+function ar(el){el.style.height='auto';el.style.height=el.scrollHeight+'px';}
+
+document.querySelectorAll('.editable').forEach(el=>{
+  el.addEventListener('input',()=>{clearTimeout(el._t);el._t=setTimeout(sv,600);});
+  el.addEventListener('blur',sv);
+});
+['inp-cn','inp-rn','inp-dt','inp-src'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('input',()=>{clearTimeout(el._t);el._t=setTimeout(sv,400);});});
+const on=document.getElementById('overall-notes');
+if(on){on.addEventListener('input',()=>{ar(on);clearTimeout(on._t);on._t=setTimeout(sv,400);});}
+
+buildDash();
+loadAll();
 </script>
 </body>
 </html>
